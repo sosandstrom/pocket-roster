@@ -24,6 +24,7 @@ import se.bassac.roster.dao.DSeriesDao;
 import se.bassac.roster.dao.DTimingsDao;
 import se.bassac.roster.dao.DTrackDao;
 import se.bassac.roster.domain.DAthlete;
+import se.bassac.roster.domain.DClass;
 import se.bassac.roster.domain.DOrganizer;
 import se.bassac.roster.domain.DRace;
 import se.bassac.roster.domain.DSeries;
@@ -88,7 +89,16 @@ public class RosterService {
                         
                         final DTrack preakLeapTrack = trackDao.persist(preakRaceKey, 
                                 40869L, "http://", "Preak Leap 3.0km");
-                        
+
+                        final DClass a1 = classDao.persist(preakRaceKey, 111L, 
+                                new Date(1370748677000L), "A1", new Date(1370747700000L), 
+                                preakLeapTrack);
+                        final DClass b = classDao.persist(preakRaceKey, 121L, 
+                                new Date(1370748677000L), "B", new Date(1370744700000L), 
+                                preakLeapTrack);
+                        final DClass c2 = classDao.persist(preakRaceKey, 132L, 
+                                new Date(1370742443000L), "C2", new Date(1370742300000L), 
+                                preakLeapTrack);
                     }
                 });
             } catch (IOException ex) {
