@@ -20,7 +20,7 @@ import se.bassac.roster.domain.DAthlete;
 /**
  * The DAthlete domain-object specific finders and methods go in this POJO.
  * 
- * Generated on 2013-06-12T21:06:02.657+0700.
+ * Generated on 2013-06-14T20:04:52.499+0700.
  * @author mardao DAO generator (net.sf.mardao.plugin.ProcessDomainMojo)
  */
 public class GeneratedDAthleteDaoImpl extends TypeDaoImpl<DAthlete, java.lang.Long> 

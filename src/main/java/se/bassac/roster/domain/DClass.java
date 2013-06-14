@@ -65,5 +65,12 @@ public class DClass extends AbstractLongEntity {
         this.name = name;
     }
 
-    
+    public DTrack getTrack() {
+        return track;
+    }
+
+    public void setTrack(DTrack track) {
+        this.track = track;
+    }
+
 }

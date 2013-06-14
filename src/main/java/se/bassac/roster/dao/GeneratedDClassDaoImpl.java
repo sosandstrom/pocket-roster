@@ -15,17 +15,29 @@ import net.sf.mardao.core.Filter;
 import net.sf.mardao.core.dao.DaoImpl;
 import net.sf.mardao.core.dao.TypeDaoImpl;
 import net.sf.mardao.core.geo.DLocation;
+import se.bassac.roster.domain.DClass;
 import se.bassac.roster.domain.DTrack;
 
 /**
- * The DTrack domain-object specific finders and methods go in this POJO.
+ * The DClass domain-object specific finders and methods go in this POJO.
  * 
  * Generated on 2013-06-14T20:04:52.499+0700.
  * @author mardao DAO generator (net.sf.mardao.plugin.ProcessDomainMojo)
  */
-public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long> 
-	implements GeneratedDTrackDao {
+public class GeneratedDClassDaoImpl extends TypeDaoImpl<DClass, java.lang.Long> 
+	implements GeneratedDClassDao {
 
+    /** DAO for Many-To-One relation track */
+    private GeneratedDTrackDaoImpl trackDao;
+    /** Setter for Many-To-One track DAO */
+    public void setTrackDao(GeneratedDTrackDaoImpl dao) {
+        trackDao = dao;
+        MANY_TO_ONE_DAOS.put(COLUMN_NAME_TRACK, dao);
+    }
+    /** Getter for Many-To-One track DAO */
+    protected GeneratedDTrackDaoImpl getTrackDao() {
+        return trackDao;
+    }
 
     /** to list the property names for ManyToOne relations */
     @Override
@@ -42,8 +54,8 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
     private final Map<String, DaoImpl> MANY_TO_ONE_DAOS = new TreeMap<String, DaoImpl>();
 
     /** Default constructor */
-   public GeneratedDTrackDaoImpl() {
-      super(DTrack.class, java.lang.Long.class);
+   public GeneratedDClassDaoImpl() {
+      super(DClass.class, java.lang.Long.class);
    }
 
    // ------ BEGIN DaoImpl overrides -----------------------------
@@ -62,7 +74,7 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
    }
 
     @Override
-    protected Object getDomainProperty(DTrack domain, String name) {
+    protected Object getDomainProperty(DClass domain, String name) {
         Object value;
         // simple key?
         if (COLUMN_NAME_ID.equals(name)) {
@@ -73,17 +85,20 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
             value = domain.getRaceKey();
         }
         // fields
+        else if (COLUMN_NAME_ACTUALSTART.equals(name)) {
+            value = domain.getActualStart();
+        }
         else if (COLUMN_NAME_CREATEDBY.equals(name)) {
             value = domain.getCreatedBy();
         }
         else if (COLUMN_NAME_CREATEDDATE.equals(name)) {
             value = domain.getCreatedDate();
         }
-        else if (COLUMN_NAME_KMLURL.equals(name)) {
-            value = domain.getKmlUrl();
-        }
         else if (COLUMN_NAME_NAME.equals(name)) {
             value = domain.getName();
+        }
+        else if (COLUMN_NAME_SCHEDULEDSTART.equals(name)) {
+            value = domain.getScheduledStart();
         }
         else if (COLUMN_NAME_UPDATEDBY.equals(name)) {
             value = domain.getUpdatedBy();
@@ -93,6 +108,11 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
         }
         // one-to-ones
         // many-to-ones
+        else if (COLUMN_NAME_TRACK.equals(name)) {
+            final se.bassac.roster.domain.DTrack foreign = domain.getTrack();
+            final Object foreignKey = trackDao.getPrimaryKey(foreign);
+            value = foreignKey;
+        }
         // many-to-manys
         else {
             value = super.getDomainProperty(domain, name);
@@ -117,17 +137,20 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
             clazz = java.lang.Object.class;
         }
         // fields
+        else if (COLUMN_NAME_ACTUALSTART.equals(name)) {
+            clazz = java.util.Date.class;
+        }
         else if (COLUMN_NAME_CREATEDBY.equals(name)) {
             clazz = java.lang.String.class;
         }
         else if (COLUMN_NAME_CREATEDDATE.equals(name)) {
             clazz = java.util.Date.class;
         }
-        else if (COLUMN_NAME_KMLURL.equals(name)) {
-            clazz = java.lang.String.class;
-        }
         else if (COLUMN_NAME_NAME.equals(name)) {
             clazz = java.lang.String.class;
+        }
+        else if (COLUMN_NAME_SCHEDULEDSTART.equals(name)) {
+            clazz = java.util.Date.class;
         }
         else if (COLUMN_NAME_UPDATEDBY.equals(name)) {
             clazz = java.lang.String.class;
@@ -137,6 +160,9 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
         }
         // one-to-ones
         // many-to-ones
+        else if (COLUMN_NAME_TRACK.equals(name)) {
+            clazz = se.bassac.roster.domain.DTrack.class;
+        }
         // many-to-manys
         else {
             throw new IllegalArgumentException("No such column " + name);
@@ -146,7 +172,7 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
     }
       
     @Override
-    protected void setDomainProperty(final DTrack domain, final String name, final Object value) {
+    protected void setDomainProperty(final DClass domain, final String name, final Object value) {
         // simple key?
         if (COLUMN_NAME_ID.equals(name)) {
             domain.setId((java.lang.Long) value);
@@ -156,17 +182,20 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
             domain.setRaceKey((java.lang.Object) value);
         }
         // fields
+        else if (COLUMN_NAME_ACTUALSTART.equals(name)) {
+            domain.setActualStart((java.util.Date) value);
+        }
         else if (COLUMN_NAME_CREATEDBY.equals(name)) {
             domain.setCreatedBy((java.lang.String) value);
         }
         else if (COLUMN_NAME_CREATEDDATE.equals(name)) {
             domain.setCreatedDate((java.util.Date) value);
         }
-        else if (COLUMN_NAME_KMLURL.equals(name)) {
-            domain.setKmlUrl((java.lang.String) value);
-        }
         else if (COLUMN_NAME_NAME.equals(name)) {
             domain.setName((java.lang.String) value);
+        }
+        else if (COLUMN_NAME_SCHEDULEDSTART.equals(name)) {
+            domain.setScheduledStart((java.util.Date) value);
         }
         else if (COLUMN_NAME_UPDATEDBY.equals(name)) {
             domain.setUpdatedBy((java.lang.String) value);
@@ -176,6 +205,19 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
         }
         // one-to-ones
         // many-to-ones
+        else if (COLUMN_NAME_TRACK.equals(name)) {
+            DTrack foreign = null;
+            if (null != value) {
+                try {
+                    foreign = trackDao.createDomain(value);
+                } catch (InstantiationException ex) {
+                    LOG.error("Creating foreign domain", ex);
+                } catch (IllegalAccessException ex) {
+                    LOG.error("Creating foreign domain", ex);
+                }
+            }
+            domain.setTrack(foreign);
+        }
         // many-to-manys
         else {
             super.setDomainProperty(domain, name, value);
@@ -183,10 +225,13 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
     }
 
     @Override
-    protected void setDomainStringProperty(final DTrack domain, final String name, final Map<String, String> properties) {
+    protected void setDomainStringProperty(final DClass domain, final String name, final Map<String, String> properties) {
         final String value = properties.get(name);
         Class clazz = getColumnClass(name);
         // many-to-ones
+        if (COLUMN_NAME_TRACK.equals(name)) {
+            clazz = java.lang.Long.class;
+        }
         setDomainProperty(domain, name, parseProperty(value, clazz));
     }
 
@@ -211,11 +256,11 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
 
    // ------ END DaoImpl overrides -----------------------------
 
-        public Object getParentKey(DTrack domain) {
+        public Object getParentKey(DClass domain) {
             return domain.getRaceKey();
         }
 
-        public void setParentKey(DTrack domain, Object raceKey) {
+        public void setParentKey(DClass domain, Object raceKey) {
             domain.setRaceKey((Serializable) raceKey);
         }
 
@@ -224,16 +269,16 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
 	/**
 	 * query-by method for parent field raceKey
 	 * @param raceKey the specified attribute
-	 * @return an Iterable of DTracks for the specified parent
+	 * @return an Iterable of DClasss for the specified parent
 	 */
-	public final Iterable<DTrack> queryByRaceKey(Object raceKey) {
+	public final Iterable<DClass> queryByRaceKey(Object raceKey) {
             return queryIterable(false, 0, -1, raceKey, null, null, false, null, false);
 	}
 	
 	/**
 	 * query-key-by method for parent field raceKey
 	 * @param raceKey the parent
-	 * @return an Iterable of keys to the DTracks with the specified parent
+	 * @return an Iterable of keys to the DClasss with the specified parent
 	 */
 	public final Iterable<java.lang.Long> queryKeysByRaceKey(Object raceKey) {
             return queryIterableKeys(0, -1, raceKey, null, null, false, null, false);
@@ -244,18 +289,18 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
 	 * @param raceKey the specified parent
          * @param pageSize the number of domain entities in the page
          * @param cursorString non-null if get next page
-	 * @return a Page of DTracks for the specified raceKey
+	 * @return a Page of DClasss for the specified raceKey
 	 */
-	public final CursorPage<DTrack, java.lang.Long> queryPageByRaceKey(java.lang.Object raceKey,
+	public final CursorPage<DClass, java.lang.Long> queryPageByRaceKey(java.lang.Object raceKey,
             int pageSize, String cursorString) {
             return queryPage(false, pageSize, raceKey, null, null, false, null, false, cursorString);
         }
 
 
         /**
-         * @return the simple key for specified DTrack domain object
+         * @return the simple key for specified DClass domain object
          */
-        public Long getSimpleKey(DTrack domain) {
+        public Long getSimpleKey(DClass domain) {
             if (null == domain) {
                 return null;
             }
@@ -263,9 +308,9 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
         }
 
         /**
-         * @return the simple key for specified DTrack domain object
+         * @return the simple key for specified DClass domain object
          */
-        public void setSimpleKey(DTrack domain, Long id) {
+        public void setSimpleKey(DClass domain, Long id) {
             domain.setId(id);
         }
 
@@ -273,14 +318,14 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
             return COLUMN_NAME_CREATEDBY;
         }
 
-        public String getCreatedBy(DTrack domain) {
+        public String getCreatedBy(DClass domain) {
             if (null == domain) {
                 return null;
             }
             return domain.getCreatedBy();
         }
 
-        public void _setCreatedBy(DTrack domain, String creator) {
+        public void _setCreatedBy(DClass domain, String creator) {
             domain.setCreatedBy(creator);
         }
 
@@ -288,14 +333,14 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
             return COLUMN_NAME_UPDATEDBY;
         }
 
-        public String getUpdatedBy(DTrack domain) {
+        public String getUpdatedBy(DClass domain) {
             if (null == domain) {
                 return null;
             }
             return domain.getUpdatedBy();
         }
 
-        public void _setUpdatedBy(DTrack domain, String updator) {
+        public void _setUpdatedBy(DClass domain, String updator) {
             domain.setUpdatedBy(updator);
         }
 
@@ -303,14 +348,14 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
             return COLUMN_NAME_CREATEDDATE;
         }
 
-        public Date getCreatedDate(DTrack domain) {
+        public Date getCreatedDate(DClass domain) {
             if (null == domain) {
                 return null;
             }
             return domain.getCreatedDate();
         }
 
-        public void _setCreatedDate(DTrack domain, Date date) {
+        public void _setCreatedDate(DClass domain, Date date) {
             domain.setCreatedDate(date);
         }
 
@@ -318,14 +363,14 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
             return COLUMN_NAME_UPDATEDDATE;
         }
 
-        public Date getUpdatedDate(DTrack domain) {
+        public Date getUpdatedDate(DClass domain) {
             if (null == domain) {
                 return null;
             }
             return domain.getUpdatedDate();
         }
 
-        public void _setUpdatedDate(DTrack domain, Date date) {
+        public void _setUpdatedDate(DClass domain, Date date) {
             domain.setUpdatedDate(date);
         }
 
@@ -333,7 +378,39 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
 	/**
          * {@inheritDoc}
 	 */
-	public final Iterable<DTrack> queryByCreatedBy(java.lang.String createdBy) {
+	public final Iterable<DClass> queryByActualStart(java.util.Date actualStart) {
+            final Filter filter = createEqualsFilter(COLUMN_NAME_ACTUALSTART, actualStart);
+            return queryIterable(false, 0, -1, null, null, null, false, null, false, filter);
+	}
+	
+	/**
+	 * query-key-by method for attribute field actualStart
+	 * @param actualStart the specified attribute
+	 * @return an Iterable of keys to the DClasss with the specified attribute
+	 */
+	public final Iterable<java.lang.Long> queryKeysByActualStart(java.util.Date actualStart) {
+            final Filter filter = createEqualsFilter(COLUMN_NAME_ACTUALSTART, actualStart);
+            return queryIterableKeys(0, -1, null, null, null, false, null, false, filter);
+	}
+
+	/**
+	 * query-page-by method for field actualStart
+	 * @param actualStart the specified attribute
+         * @param pageSize the number of domain entities in the page
+         * @param cursorString non-null if get next page
+	 * @return a Page of DClasss for the specified actualStart
+	 */
+	public final CursorPage<DClass, java.lang.Long> queryPageByActualStart(java.util.Date actualStart,
+            int pageSize, String cursorString) {
+            final Filter filter = createEqualsFilter(COLUMN_NAME_ACTUALSTART, actualStart);
+            return queryPage(false, pageSize, null, null, null, false, null, false, cursorString, filter);
+        }
+
+	 
+	/**
+         * {@inheritDoc}
+	 */
+	public final Iterable<DClass> queryByCreatedBy(java.lang.String createdBy) {
             final Filter filter = createEqualsFilter(COLUMN_NAME_CREATEDBY, createdBy);
             return queryIterable(false, 0, -1, null, null, null, false, null, false, filter);
 	}
@@ -341,7 +418,7 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
 	/**
 	 * query-key-by method for attribute field createdBy
 	 * @param createdBy the specified attribute
-	 * @return an Iterable of keys to the DTracks with the specified attribute
+	 * @return an Iterable of keys to the DClasss with the specified attribute
 	 */
 	public final Iterable<java.lang.Long> queryKeysByCreatedBy(java.lang.String createdBy) {
             final Filter filter = createEqualsFilter(COLUMN_NAME_CREATEDBY, createdBy);
@@ -353,9 +430,9 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
 	 * @param createdBy the specified attribute
          * @param pageSize the number of domain entities in the page
          * @param cursorString non-null if get next page
-	 * @return a Page of DTracks for the specified createdBy
+	 * @return a Page of DClasss for the specified createdBy
 	 */
-	public final CursorPage<DTrack, java.lang.Long> queryPageByCreatedBy(java.lang.String createdBy,
+	public final CursorPage<DClass, java.lang.Long> queryPageByCreatedBy(java.lang.String createdBy,
             int pageSize, String cursorString) {
             final Filter filter = createEqualsFilter(COLUMN_NAME_CREATEDBY, createdBy);
             return queryPage(false, pageSize, null, null, null, false, null, false, cursorString, filter);
@@ -365,7 +442,7 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
 	/**
          * {@inheritDoc}
 	 */
-	public final Iterable<DTrack> queryByCreatedDate(java.util.Date createdDate) {
+	public final Iterable<DClass> queryByCreatedDate(java.util.Date createdDate) {
             final Filter filter = createEqualsFilter(COLUMN_NAME_CREATEDDATE, createdDate);
             return queryIterable(false, 0, -1, null, null, null, false, null, false, filter);
 	}
@@ -373,7 +450,7 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
 	/**
 	 * query-key-by method for attribute field createdDate
 	 * @param createdDate the specified attribute
-	 * @return an Iterable of keys to the DTracks with the specified attribute
+	 * @return an Iterable of keys to the DClasss with the specified attribute
 	 */
 	public final Iterable<java.lang.Long> queryKeysByCreatedDate(java.util.Date createdDate) {
             final Filter filter = createEqualsFilter(COLUMN_NAME_CREATEDDATE, createdDate);
@@ -385,9 +462,9 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
 	 * @param createdDate the specified attribute
          * @param pageSize the number of domain entities in the page
          * @param cursorString non-null if get next page
-	 * @return a Page of DTracks for the specified createdDate
+	 * @return a Page of DClasss for the specified createdDate
 	 */
-	public final CursorPage<DTrack, java.lang.Long> queryPageByCreatedDate(java.util.Date createdDate,
+	public final CursorPage<DClass, java.lang.Long> queryPageByCreatedDate(java.util.Date createdDate,
             int pageSize, String cursorString) {
             final Filter filter = createEqualsFilter(COLUMN_NAME_CREATEDDATE, createdDate);
             return queryPage(false, pageSize, null, null, null, false, null, false, cursorString, filter);
@@ -397,39 +474,7 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
 	/**
          * {@inheritDoc}
 	 */
-	public final Iterable<DTrack> queryByKmlUrl(java.lang.String kmlUrl) {
-            final Filter filter = createEqualsFilter(COLUMN_NAME_KMLURL, kmlUrl);
-            return queryIterable(false, 0, -1, null, null, null, false, null, false, filter);
-	}
-	
-	/**
-	 * query-key-by method for attribute field kmlUrl
-	 * @param kmlUrl the specified attribute
-	 * @return an Iterable of keys to the DTracks with the specified attribute
-	 */
-	public final Iterable<java.lang.Long> queryKeysByKmlUrl(java.lang.String kmlUrl) {
-            final Filter filter = createEqualsFilter(COLUMN_NAME_KMLURL, kmlUrl);
-            return queryIterableKeys(0, -1, null, null, null, false, null, false, filter);
-	}
-
-	/**
-	 * query-page-by method for field kmlUrl
-	 * @param kmlUrl the specified attribute
-         * @param pageSize the number of domain entities in the page
-         * @param cursorString non-null if get next page
-	 * @return a Page of DTracks for the specified kmlUrl
-	 */
-	public final CursorPage<DTrack, java.lang.Long> queryPageByKmlUrl(java.lang.String kmlUrl,
-            int pageSize, String cursorString) {
-            final Filter filter = createEqualsFilter(COLUMN_NAME_KMLURL, kmlUrl);
-            return queryPage(false, pageSize, null, null, null, false, null, false, cursorString, filter);
-        }
-
-	 
-	/**
-         * {@inheritDoc}
-	 */
-	public final Iterable<DTrack> queryByName(java.lang.String name) {
+	public final Iterable<DClass> queryByName(java.lang.String name) {
             final Filter filter = createEqualsFilter(COLUMN_NAME_NAME, name);
             return queryIterable(false, 0, -1, null, null, null, false, null, false, filter);
 	}
@@ -437,7 +482,7 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
 	/**
 	 * query-key-by method for attribute field name
 	 * @param name the specified attribute
-	 * @return an Iterable of keys to the DTracks with the specified attribute
+	 * @return an Iterable of keys to the DClasss with the specified attribute
 	 */
 	public final Iterable<java.lang.Long> queryKeysByName(java.lang.String name) {
             final Filter filter = createEqualsFilter(COLUMN_NAME_NAME, name);
@@ -449,9 +494,9 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
 	 * @param name the specified attribute
          * @param pageSize the number of domain entities in the page
          * @param cursorString non-null if get next page
-	 * @return a Page of DTracks for the specified name
+	 * @return a Page of DClasss for the specified name
 	 */
-	public final CursorPage<DTrack, java.lang.Long> queryPageByName(java.lang.String name,
+	public final CursorPage<DClass, java.lang.Long> queryPageByName(java.lang.String name,
             int pageSize, String cursorString) {
             final Filter filter = createEqualsFilter(COLUMN_NAME_NAME, name);
             return queryPage(false, pageSize, null, null, null, false, null, false, cursorString, filter);
@@ -461,7 +506,39 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
 	/**
          * {@inheritDoc}
 	 */
-	public final Iterable<DTrack> queryByUpdatedBy(java.lang.String updatedBy) {
+	public final Iterable<DClass> queryByScheduledStart(java.util.Date scheduledStart) {
+            final Filter filter = createEqualsFilter(COLUMN_NAME_SCHEDULEDSTART, scheduledStart);
+            return queryIterable(false, 0, -1, null, null, null, false, null, false, filter);
+	}
+	
+	/**
+	 * query-key-by method for attribute field scheduledStart
+	 * @param scheduledStart the specified attribute
+	 * @return an Iterable of keys to the DClasss with the specified attribute
+	 */
+	public final Iterable<java.lang.Long> queryKeysByScheduledStart(java.util.Date scheduledStart) {
+            final Filter filter = createEqualsFilter(COLUMN_NAME_SCHEDULEDSTART, scheduledStart);
+            return queryIterableKeys(0, -1, null, null, null, false, null, false, filter);
+	}
+
+	/**
+	 * query-page-by method for field scheduledStart
+	 * @param scheduledStart the specified attribute
+         * @param pageSize the number of domain entities in the page
+         * @param cursorString non-null if get next page
+	 * @return a Page of DClasss for the specified scheduledStart
+	 */
+	public final CursorPage<DClass, java.lang.Long> queryPageByScheduledStart(java.util.Date scheduledStart,
+            int pageSize, String cursorString) {
+            final Filter filter = createEqualsFilter(COLUMN_NAME_SCHEDULEDSTART, scheduledStart);
+            return queryPage(false, pageSize, null, null, null, false, null, false, cursorString, filter);
+        }
+
+	 
+	/**
+         * {@inheritDoc}
+	 */
+	public final Iterable<DClass> queryByUpdatedBy(java.lang.String updatedBy) {
             final Filter filter = createEqualsFilter(COLUMN_NAME_UPDATEDBY, updatedBy);
             return queryIterable(false, 0, -1, null, null, null, false, null, false, filter);
 	}
@@ -469,7 +546,7 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
 	/**
 	 * query-key-by method for attribute field updatedBy
 	 * @param updatedBy the specified attribute
-	 * @return an Iterable of keys to the DTracks with the specified attribute
+	 * @return an Iterable of keys to the DClasss with the specified attribute
 	 */
 	public final Iterable<java.lang.Long> queryKeysByUpdatedBy(java.lang.String updatedBy) {
             final Filter filter = createEqualsFilter(COLUMN_NAME_UPDATEDBY, updatedBy);
@@ -481,9 +558,9 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
 	 * @param updatedBy the specified attribute
          * @param pageSize the number of domain entities in the page
          * @param cursorString non-null if get next page
-	 * @return a Page of DTracks for the specified updatedBy
+	 * @return a Page of DClasss for the specified updatedBy
 	 */
-	public final CursorPage<DTrack, java.lang.Long> queryPageByUpdatedBy(java.lang.String updatedBy,
+	public final CursorPage<DClass, java.lang.Long> queryPageByUpdatedBy(java.lang.String updatedBy,
             int pageSize, String cursorString) {
             final Filter filter = createEqualsFilter(COLUMN_NAME_UPDATEDBY, updatedBy);
             return queryPage(false, pageSize, null, null, null, false, null, false, cursorString, filter);
@@ -493,7 +570,7 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
 	/**
          * {@inheritDoc}
 	 */
-	public final Iterable<DTrack> queryByUpdatedDate(java.util.Date updatedDate) {
+	public final Iterable<DClass> queryByUpdatedDate(java.util.Date updatedDate) {
             final Filter filter = createEqualsFilter(COLUMN_NAME_UPDATEDDATE, updatedDate);
             return queryIterable(false, 0, -1, null, null, null, false, null, false, filter);
 	}
@@ -501,7 +578,7 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
 	/**
 	 * query-key-by method for attribute field updatedDate
 	 * @param updatedDate the specified attribute
-	 * @return an Iterable of keys to the DTracks with the specified attribute
+	 * @return an Iterable of keys to the DClasss with the specified attribute
 	 */
 	public final Iterable<java.lang.Long> queryKeysByUpdatedDate(java.util.Date updatedDate) {
             final Filter filter = createEqualsFilter(COLUMN_NAME_UPDATEDDATE, updatedDate);
@@ -513,9 +590,9 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
 	 * @param updatedDate the specified attribute
          * @param pageSize the number of domain entities in the page
          * @param cursorString non-null if get next page
-	 * @return a Page of DTracks for the specified updatedDate
+	 * @return a Page of DClasss for the specified updatedDate
 	 */
-	public final CursorPage<DTrack, java.lang.Long> queryPageByUpdatedDate(java.util.Date updatedDate,
+	public final CursorPage<DClass, java.lang.Long> queryPageByUpdatedDate(java.util.Date updatedDate,
             int pageSize, String cursorString) {
             final Filter filter = createEqualsFilter(COLUMN_NAME_UPDATEDDATE, updatedDate);
             return queryPage(false, pageSize, null, null, null, false, null, false, cursorString, filter);
@@ -525,6 +602,66 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
 	// ----------------------- one-to-one finders -------------------------
 
 	// ----------------------- many-to-one finders -------------------------
+	/**
+	 * query-by method for many-to-one field track
+	 * @param track the id of the related se.bassac.roster.domain.DTrack entity
+	 * @return an Iterable of DClasss belonging to the many-to-one relation
+	 */
+	public final Iterable<DClass> queryByTrack(se.bassac.roster.domain.DTrack track) {
+            final Object foreignKey = trackDao.getPrimaryKey(track);
+            final Filter filter = createEqualsFilter(COLUMN_NAME_TRACK, foreignKey);
+            return queryIterable(false, 0, -1, null, null, null, false, null, false, filter);
+	}
+
+	/**
+	 * query-page-by method for many-to-one field track
+	 * @param track the related se.bassac.roster.domain.DTrack entity
+         * @param pageSize the number of domain entities in the page
+         * @param cursorString non-null if get next page
+	 * @return a CursorPage of DClasss belonging to the many-to-one relation
+	 */
+	public final CursorPage<DClass, java.lang.Long> queryPageByTrack(se.bassac.roster.domain.DTrack track,
+                int pageSize, String cursorString) {
+            final Object foreignKey = trackDao.getPrimaryKey(track);
+            final Filter filter = createEqualsFilter(COLUMN_NAME_TRACK, foreignKey);
+            return queryPage(false, pageSize, null, null, null, false, null, false, cursorString, filter);
+        }
+
+	/**
+	 * query-key-by method for many-to-one field track
+	 * @param track the specified attribute
+         * @since 2.3.2
+	 * @return an Iterable of keys to the DClasss with the specified attribute
+	 */
+	public final Iterable<java.lang.Long> queryKeysByTrack(se.bassac.roster.domain.DTrack track) {
+            final Object foreignKey = trackDao.getPrimaryKey(track);
+            final Filter filter = createEqualsFilter(COLUMN_NAME_TRACK, foreignKey);
+            return queryIterableKeys(0, -1, null, null, null, false, null, false, filter);
+	}
+
+	/**
+	 * query-by method for many-to-one field track
+	 * @param id the related se.bassac.roster.domain.DTrack entity's simple key
+	 * @return an Iterable of DClasss belonging to the many-to-one relation
+	 */
+	public final Iterable<DClass> queryByTrackId(java.lang.Long id) {
+            final Object foreignKey = trackDao.getPrimaryKey(null, id);
+            final Filter filter = createEqualsFilter(COLUMN_NAME_TRACK, foreignKey);
+            return queryIterable(false, 0, -1, null, null, null, false, null, false, filter);
+	}
+
+	/**
+	 * query-keys-by method for many-to-one field track
+	 * @param id the related se.bassac.roster.domain.DTrack entity's simple key
+	 * @return an Iterable of java.lang.Long keys belonging to the many-to-one relation
+	 */
+	public final Iterable<java.lang.Long> queryKeysByTrackId(java.lang.Long id) {
+            final Object foreignKey = trackDao.getPrimaryKey(null, id);
+            final Filter filter = createEqualsFilter(COLUMN_NAME_TRACK, foreignKey);
+            return queryIterableKeys(0, -1, null, null, null, false, null, false, filter);
+	}
+
+	
 
 	// ----------------------- many-to-many finders -------------------------
 
@@ -535,12 +672,14 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
 	/**
 	 * Persist an entity given all attributes
 	 */
-	public DTrack persist(Object raceKey,  	
+	public DClass persist(Object raceKey,  	
 		java.lang.Long id, 
-		java.lang.String kmlUrl, 
-		java.lang.String name) {
+		java.util.Date actualStart, 
+		java.lang.String name, 
+		java.util.Date scheduledStart, 
+		se.bassac.roster.domain.DTrack track) {
 
-            DTrack domain = null;
+            DClass domain = null;
             // if primaryKey specified, use it
             if (null != id) {
                     domain = findByPrimaryKey(raceKey, id);
@@ -548,7 +687,7 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
 		
             // create new?
             if (null == domain) {
-                    domain = new DTrack();
+                    domain = new DClass();
                     // set parent
                     domain.setRaceKey((java.lang.Object) raceKey);
                     // generate Id?
@@ -556,10 +695,12 @@ public class GeneratedDTrackDaoImpl extends TypeDaoImpl<DTrack, java.lang.Long>
                             domain.setId(id);
                     }
                     // fields
-                    domain.setKmlUrl(kmlUrl);
+                    domain.setActualStart(actualStart);
                     domain.setName(name);
+                    domain.setScheduledStart(scheduledStart);
                     // one-to-ones
                     // many-to-ones
+                    domain.setTrack(track);
 			
                     persist(domain);
             }

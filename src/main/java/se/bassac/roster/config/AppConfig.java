@@ -98,25 +98,6 @@ public class AppConfig implements GaelicConfig, SecurityConfig {
                         .path("track")
                             .crud("v10", trackLeaf, trackService);
                 
-        // Application initialization
-        if (SystemProperty.Environment.Value.Development == SystemProperty.environment.value()) {
-            
-            appDomainService.getDao().persist("prod", "UA", null, null, "Prod Domain", "os@bassac.se", "IRrvQJUEHK4pVrtcRnW303YJu", "prod");
-            try {
-                DomainNamespaceFilter.doInNamespace("prod", new Runnable() {
-                    @Override
-                    public void run() {
-                        trackService.getDao().persist(42L, "http://connect.garmin.com/proxy/activity-service-1.0/kml/activity/326609466?full=true");
-                    }
-                });
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            } catch (ServletException ex) {
-                ex.printStackTrace();
-            }
-        }
-                
-                
         return BUILDER.build();
     }
 
