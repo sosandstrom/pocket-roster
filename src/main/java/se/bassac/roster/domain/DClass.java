@@ -7,6 +7,7 @@ package se.bassac.roster.domain;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import net.sf.mardao.core.Parent;
 import net.sf.mardao.core.domain.AbstractLongEntity;
 
@@ -15,7 +16,7 @@ import net.sf.mardao.core.domain.AbstractLongEntity;
  * @author sosandstrom
  */
 @Entity
-public class DTrack extends AbstractLongEntity {
+public class DClass extends AbstractLongEntity {
     
     @Parent(kind="DRace")
     private Object raceKey;
@@ -23,8 +24,30 @@ public class DTrack extends AbstractLongEntity {
     @Basic
     private String name;
     
+    @ManyToOne
+    private DTrack track;
+
     @Basic
-    private String kmlUrl;
+    private Date scheduledStart;
+    
+    @Basic
+    private Date actualStart;
+
+    public Date getScheduledStart() {
+        return scheduledStart;
+    }
+
+    public void setScheduledStart(Date scheduledStart) {
+        this.scheduledStart = scheduledStart;
+    }
+
+    public Date getActualStart() {
+        return actualStart;
+    }
+
+    public void setActualStart(Date actualStart) {
+        this.actualStart = actualStart;
+    }
     
     public Object getRaceKey() {
         return raceKey;
@@ -42,12 +65,5 @@ public class DTrack extends AbstractLongEntity {
         this.name = name;
     }
 
-    public String getKmlUrl() {
-        return kmlUrl;
-    }
-
-    public void setKmlUrl(String kmlUrl) {
-        this.kmlUrl = kmlUrl;
-    }
-
+    
 }
