@@ -4,13 +4,13 @@
 
 package se.bassac.roster.config;
 
-import com.google.appengine.api.utils.SystemProperty;
 import se.bassac.roster.service.AthleteService;
 import se.bassac.roster.web.AthleteLeaf;
 import com.wadpam.gaelic.GaelicConfig;
 import com.wadpam.gaelic.GaelicServlet;
 import com.wadpam.gaelic.Node;
-import com.wadpam.gaelic.appengine.DomainNamespaceFilter;
+import com.wadpam.gaelic.dao.DAppDomainDao;
+import com.wadpam.gaelic.domain.DAppDomain;
 import com.wadpam.gaelic.oauth.dao.DConnectionDao;
 import com.wadpam.gaelic.oauth.service.ConnectionServiceImpl;
 import com.wadpam.gaelic.oauth.service.OAuth2ServiceImpl;
@@ -24,11 +24,42 @@ import com.wadpam.gaelic.tree.AppDomainLeaf;
 import com.wadpam.gaelic.tree.DomainNamespaceInterceptor;
 import com.wadpam.gaelic.tree.Interceptor;
 import com.wadpam.gaelic.web.MardaoPrincipalInterceptor;
-import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
 import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
+import net.sf.mardao.core.dao.DaoImpl;
+import se.bassac.roster.dao.DAthleteDao;
+import se.bassac.roster.dao.DCheckpointDao;
+import se.bassac.roster.dao.DCheckpointDaoBean;
+import se.bassac.roster.dao.DClassDao;
+import se.bassac.roster.dao.DClassDaoBean;
+import se.bassac.roster.dao.DMilestoneDao;
+import se.bassac.roster.dao.DMilestoneDaoBean;
+import se.bassac.roster.dao.DOrganizerDao;
+import se.bassac.roster.dao.DOrganizerDaoBean;
+import se.bassac.roster.dao.DParticipantDao;
+import se.bassac.roster.dao.DParticipantDaoBean;
+import se.bassac.roster.dao.DPassageDao;
+import se.bassac.roster.dao.DPassageDaoBean;
+import se.bassac.roster.dao.DRaceDao;
+import se.bassac.roster.dao.DRaceDaoBean;
+import se.bassac.roster.dao.DSeriesDao;
+import se.bassac.roster.dao.DSeriesDaoBean;
+import se.bassac.roster.dao.DTimingsDao;
+import se.bassac.roster.dao.DTimingsDaoBean;
+import se.bassac.roster.dao.DTrackDao;
+import se.bassac.roster.domain.DAthlete;
+import se.bassac.roster.domain.DCheckpoint;
+import se.bassac.roster.domain.DClass;
+import se.bassac.roster.domain.DMilestone;
+import se.bassac.roster.domain.DOrganizer;
+import se.bassac.roster.domain.DParticipant;
+import se.bassac.roster.domain.DPassage;
+import se.bassac.roster.domain.DRace;
+import se.bassac.roster.domain.DSeries;
+import se.bassac.roster.domain.DTimings;
+import se.bassac.roster.domain.DTrack;
+import se.bassac.roster.service.RosterService;
 import se.bassac.roster.service.TrackService;
 import se.bassac.roster.web.TrackLeaf;
 
@@ -40,12 +71,16 @@ public class AppConfig implements GaelicConfig, SecurityConfig {
 
     @Override
     public Node init(GaelicServlet gaelicServlet, ServletConfig servletConfig) {
+        
+        // DAO beans
+        final Map<Class, DaoImpl> DAO_MAP = se.bassac.roster.dao.DaoConfig.createDaos();
 
         // conventional services
         ConnectionServiceImpl connectionService = new ConnectionServiceImpl();
         DConnectionDao connectionDao = connectionService.getDao();
         
         AthleteService athleteService = new AthleteService();
+        athleteService.setDao((DAthleteDao) DAO_MAP.get(DAthlete.class));
         AthleteLeaf athleteLeaf = new AthleteLeaf();
         
         OAuth2ServiceImpl oauth2Service = new OAuth2ServiceImpl();
@@ -88,8 +123,34 @@ public class AppConfig implements GaelicConfig, SecurityConfig {
                             .add("v11", oauth2Leaf);
         
         // Application Resources
+//        final DCheckpointDao checkpointDao = new DCheckpointDaoBean();
+//        final DClassDao classDao = new DClassDaoBean();
+//        final DMilestoneDao milestoneDao = new DMilestoneDaoBean();
+//        final DOrganizerDao organizerDao = new DOrganizerDaoBean();
+//        final DParticipantDao participantDao = new DParticipantDaoBean();
+//        final DPassageDao passageDao = new DPassageDaoBean();
+//        final DRaceDao raceDao = new DRaceDaoBean();
+//        final DSeriesDao seriesDao = new DSeriesDaoBean();
+//        final DTimingsDao timingsDao = new DTimingsDaoBean();
+        
         final TrackService trackService = new TrackService();
+        trackService.setDao((DTrackDao) DAO_MAP.get(DTrack.class));
         TrackLeaf trackLeaf = new TrackLeaf();
+        
+        final RosterService rosterService = new RosterService(
+                appDomainService.getDao(),
+                (DAthleteDao) DAO_MAP.get(DAthlete.class),
+                (DCheckpointDao) DAO_MAP.get(DCheckpoint.class),
+                (DClassDao) DAO_MAP.get(DClass.class),
+                (DMilestoneDao) DAO_MAP.get(DMilestone.class),
+                (DOrganizerDao) DAO_MAP.get(DOrganizer.class),
+                (DParticipantDao) DAO_MAP.get(DParticipant.class),
+                (DPassageDao) DAO_MAP.get(DPassage.class),
+                (DRaceDao) DAO_MAP.get(DRace.class),
+                (DSeriesDao) DAO_MAP.get(DSeries.class),
+                (DTimingsDao) DAO_MAP.get(DTimings.class),
+                (DTrackDao) DAO_MAP.get(DTrack.class));
+        rosterService.init();
         
                 BUILDER.from(Node.PATH_DOMAIN)
                         .path("athlete")

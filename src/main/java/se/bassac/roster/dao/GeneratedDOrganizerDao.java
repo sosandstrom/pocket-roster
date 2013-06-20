@@ -12,7 +12,7 @@ import net.sf.mardao.core.geo.DLocation;
 /**
  * DAO interface with finder methods for DOrganizer entities.
  *
- * Generated on 2013-06-14T20:04:52.499+0700.
+ * Generated on 2013-06-20T14:52:45.890+0700.
  * @author mardao DAO generator (net.sf.mardao.plugin.ProcessDomainMojo)
  */
 public interface GeneratedDOrganizerDao extends Dao<DOrganizer, java.lang.Long> {
@@ -21,10 +21,10 @@ public interface GeneratedDOrganizerDao extends Dao<DOrganizer, java.lang.Long> 
 	static final String COLUMN_NAME_ID = "id";
 
 
-	/** Column name for field admins is "admins" */
-	static final String COLUMN_NAME_ADMINS = "admins";
-	/** Column name for field athletes is "athletes" */
-	static final String COLUMN_NAME_ATHLETES = "athletes";
+	/** Column name for field adminIds is "adminIds" */
+	static final String COLUMN_NAME_ADMINIDS = "adminIds";
+	/** Column name for field athleteIds is "athleteIds" */
+	static final String COLUMN_NAME_ATHLETEIDS = "athleteIds";
 	/** Column name for field createdBy is "createdBy" */
 	static final String COLUMN_NAME_CREATEDBY = "createdBy";
 	/** Column name for field createdDate is "createdDate" */
@@ -37,16 +37,16 @@ public interface GeneratedDOrganizerDao extends Dao<DOrganizer, java.lang.Long> 
 	static final String COLUMN_NAME_UPDATEDDATE = "updatedDate";
 
 	/** The list of attribute names */
-	static final List<String> COLUMN_NAMES = Arrays.asList(		COLUMN_NAME_ADMINS,
-		COLUMN_NAME_ATHLETES,
+	static final List<String> COLUMN_NAMES = Arrays.asList(		COLUMN_NAME_ADMINIDS,
+		COLUMN_NAME_ATHLETEIDS,
 		COLUMN_NAME_CREATEDBY,
 		COLUMN_NAME_CREATEDDATE,
 		COLUMN_NAME_NAME,
 		COLUMN_NAME_UPDATEDBY,
 		COLUMN_NAME_UPDATEDDATE);
 	/** The list of Basic attribute names */
-	static final List<String> BASIC_NAMES = Arrays.asList(		COLUMN_NAME_ADMINS,
-		COLUMN_NAME_ATHLETES,
+	static final List<String> BASIC_NAMES = Arrays.asList(		COLUMN_NAME_ADMINIDS,
+		COLUMN_NAME_ATHLETEIDS,
 		COLUMN_NAME_CREATEDBY,
 		COLUMN_NAME_CREATEDDATE,
 		COLUMN_NAME_NAME,
@@ -58,52 +58,52 @@ public interface GeneratedDOrganizerDao extends Dao<DOrganizer, java.lang.Long> 
 
 	// ----------------------- field finders -------------------------------
 	/**
-	 * query-by method for field admins
-	 * @param admins the specified attribute
-	 * @return an Iterable of DOrganizers for the specified admins
+	 * query-by method for field adminIds
+	 * @param adminIds the specified attribute
+	 * @return an Iterable of DOrganizers for the specified adminIds
 	 */
-	Iterable<DOrganizer> queryByAdmins(java.lang.Object admins);
+	Iterable<DOrganizer> queryByAdminIds(java.lang.Object adminIds);
 		
 	/**
-	 * query-keys-by method for field admins
-	 * @param admins the specified attribute
-	 * @return an Iterable of DOrganizers for the specified admins
+	 * query-keys-by method for field adminIds
+	 * @param adminIds the specified attribute
+	 * @return an Iterable of DOrganizers for the specified adminIds
 	 */
-	Iterable<java.lang.Long> queryKeysByAdmins(java.lang.Object admins);
+	Iterable<java.lang.Long> queryKeysByAdminIds(java.lang.Object adminIds);
 
 	/**
-	 * query-page-by method for field admins
-	 * @param admins the specified attribute
+	 * query-page-by method for field adminIds
+	 * @param adminIds the specified attribute
          * @param pageSize the number of domain entities in the page
          * @param cursorString non-null if get next page
-	 * @return a Page of DOrganizers for the specified admins
+	 * @return a Page of DOrganizers for the specified adminIds
 	 */
-	CursorPage<DOrganizer, java.lang.Long> queryPageByAdmins(java.lang.Object admins,
+	CursorPage<DOrganizer, java.lang.Long> queryPageByAdminIds(java.lang.Object adminIds,
             int pageSize, String cursorString);
 
 
 	/**
-	 * query-by method for field athletes
-	 * @param athletes the specified attribute
-	 * @return an Iterable of DOrganizers for the specified athletes
+	 * query-by method for field athleteIds
+	 * @param athleteIds the specified attribute
+	 * @return an Iterable of DOrganizers for the specified athleteIds
 	 */
-	Iterable<DOrganizer> queryByAthletes(java.lang.Object athletes);
+	Iterable<DOrganizer> queryByAthleteIds(java.lang.Object athleteIds);
 		
 	/**
-	 * query-keys-by method for field athletes
-	 * @param athletes the specified attribute
-	 * @return an Iterable of DOrganizers for the specified athletes
+	 * query-keys-by method for field athleteIds
+	 * @param athleteIds the specified attribute
+	 * @return an Iterable of DOrganizers for the specified athleteIds
 	 */
-	Iterable<java.lang.Long> queryKeysByAthletes(java.lang.Object athletes);
+	Iterable<java.lang.Long> queryKeysByAthleteIds(java.lang.Object athleteIds);
 
 	/**
-	 * query-page-by method for field athletes
-	 * @param athletes the specified attribute
+	 * query-page-by method for field athleteIds
+	 * @param athleteIds the specified attribute
          * @param pageSize the number of domain entities in the page
          * @param cursorString non-null if get next page
-	 * @return a Page of DOrganizers for the specified athletes
+	 * @return a Page of DOrganizers for the specified athleteIds
 	 */
-	CursorPage<DOrganizer, java.lang.Long> queryPageByAthletes(java.lang.Object athletes,
+	CursorPage<DOrganizer, java.lang.Long> queryPageByAthleteIds(java.lang.Object athleteIds,
             int pageSize, String cursorString);
 
 
@@ -237,15 +237,15 @@ public interface GeneratedDOrganizerDao extends Dao<DOrganizer, java.lang.Long> 
 	 * Persist an entity given all attributes
 	 */
 	DOrganizer persist(		java.lang.Long id, 
-		java.util.Collection admins, 
-		java.util.Collection athletes, 
+		java.util.Collection adminIds, 
+		java.util.Collection athleteIds, 
 		java.lang.String name);	
 
 	/**
 	 * Persists an entity unless it already exists
 	 */
 	 DOrganizer persist(java.lang.String name, 
-                java.util.Collection admins, 
-                java.util.Collection athletes);
+                java.util.Collection adminIds, 
+                java.util.Collection athleteIds);
 
 }

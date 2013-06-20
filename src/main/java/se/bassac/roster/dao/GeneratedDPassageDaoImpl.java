@@ -21,7 +21,7 @@ import se.bassac.roster.domain.DCheckpoint;
 /**
  * The DPassage domain-object specific finders and methods go in this POJO.
  * 
- * Generated on 2013-06-14T20:04:52.499+0700.
+ * Generated on 2013-06-20T14:52:45.890+0700.
  * @author mardao DAO generator (net.sf.mardao.plugin.ProcessDomainMojo)
  */
 public class GeneratedDPassageDaoImpl extends TypeDaoImpl<DPassage, java.lang.Long> 
@@ -103,9 +103,7 @@ public class GeneratedDPassageDaoImpl extends TypeDaoImpl<DPassage, java.lang.Lo
         // one-to-ones
         // many-to-ones
         else if (COLUMN_NAME_CHECKPOINT.equals(name)) {
-            final se.bassac.roster.domain.DCheckpoint foreign = domain.getCheckpoint();
-            final Object foreignKey = checkpointDao.getPrimaryKey(foreign);
-            value = foreignKey;
+            value = domain.getCheckpoint();
         }
         // many-to-manys
         else {
@@ -190,13 +188,7 @@ public class GeneratedDPassageDaoImpl extends TypeDaoImpl<DPassage, java.lang.Lo
         else if (COLUMN_NAME_CHECKPOINT.equals(name)) {
             DCheckpoint foreign = null;
             if (null != value) {
-                try {
-                    foreign = checkpointDao.createDomain(value);
-                } catch (InstantiationException ex) {
-                    LOG.error("Creating foreign domain", ex);
-                } catch (IllegalAccessException ex) {
-                    LOG.error("Creating foreign domain", ex);
-                }
+                foreign = checkpointDao.createDomain(value);
             }
             domain.setCheckpoint(foreign);
         }
@@ -227,6 +219,11 @@ public class GeneratedDPassageDaoImpl extends TypeDaoImpl<DPassage, java.lang.Lo
         }
         else if (null == value) {
             // do nothing in particular, will call super at end
+        }
+        else if (COLUMN_NAME_CHECKPOINT.equals(name)) {
+            // many-to-one: replace foreign entity with its primary key
+            DCheckpoint foreign = (DCheckpoint) value;
+            value = checkpointDao.getPrimaryKey(foreign);
         }
         super.setCoreProperty(core, name, value);
     }

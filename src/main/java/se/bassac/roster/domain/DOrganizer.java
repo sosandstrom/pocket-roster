@@ -24,11 +24,11 @@ public class DOrganizer extends AbstractLongEntity {
     
     /** The admins can create and edit Series and Races */
     @Basic
-    private Collection<DAthlete> admins;
+    private Collection<Long> adminIds;
     
     /** The athletes have participated in zero or more Races */
     @Basic
-    private Collection<DAthlete> athletes;
+    private Collection<Long> athleteIds;
 
     public String getName() {
         return name;
@@ -38,20 +38,20 @@ public class DOrganizer extends AbstractLongEntity {
         this.name = name;
     }
 
-    public Collection<DAthlete> getAdmins() {
-        return admins;
+    public Collection<Long> getAdminIds() {
+        return adminIds;
     }
 
-    public void setAdmins(Collection<DAthlete> admins) {
-        this.admins = admins;
+    public void setAdminIds(Collection<Long> adminIds) {
+        this.adminIds = adminIds;
     }
 
-    public Collection<DAthlete> getAthletes() {
-        return athletes;
+    public Collection<Long> getAthleteIds() {
+        return athleteIds;
     }
 
-    public void setAthletes(Collection<DAthlete> athletes) {
-        this.athletes = athletes;
+    public void setAthleteIds(Collection<Long> athleteIds) {
+        this.athleteIds = athleteIds;
     }
-    
+
 }

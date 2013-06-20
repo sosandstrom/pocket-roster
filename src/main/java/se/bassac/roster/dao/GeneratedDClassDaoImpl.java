@@ -21,7 +21,7 @@ import se.bassac.roster.domain.DTrack;
 /**
  * The DClass domain-object specific finders and methods go in this POJO.
  * 
- * Generated on 2013-06-14T20:04:52.499+0700.
+ * Generated on 2013-06-20T14:52:45.890+0700.
  * @author mardao DAO generator (net.sf.mardao.plugin.ProcessDomainMojo)
  */
 public class GeneratedDClassDaoImpl extends TypeDaoImpl<DClass, java.lang.Long> 
@@ -109,9 +109,7 @@ public class GeneratedDClassDaoImpl extends TypeDaoImpl<DClass, java.lang.Long>
         // one-to-ones
         // many-to-ones
         else if (COLUMN_NAME_TRACK.equals(name)) {
-            final se.bassac.roster.domain.DTrack foreign = domain.getTrack();
-            final Object foreignKey = trackDao.getPrimaryKey(foreign);
-            value = foreignKey;
+            value = domain.getTrack();
         }
         // many-to-manys
         else {
@@ -208,13 +206,7 @@ public class GeneratedDClassDaoImpl extends TypeDaoImpl<DClass, java.lang.Long>
         else if (COLUMN_NAME_TRACK.equals(name)) {
             DTrack foreign = null;
             if (null != value) {
-                try {
-                    foreign = trackDao.createDomain(value);
-                } catch (InstantiationException ex) {
-                    LOG.error("Creating foreign domain", ex);
-                } catch (IllegalAccessException ex) {
-                    LOG.error("Creating foreign domain", ex);
-                }
+                foreign = trackDao.createDomain(value);
             }
             domain.setTrack(foreign);
         }
@@ -245,6 +237,11 @@ public class GeneratedDClassDaoImpl extends TypeDaoImpl<DClass, java.lang.Long>
         }
         else if (null == value) {
             // do nothing in particular, will call super at end
+        }
+        else if (COLUMN_NAME_TRACK.equals(name)) {
+            // many-to-one: replace foreign entity with its primary key
+            DTrack foreign = (DTrack) value;
+            value = trackDao.getPrimaryKey(foreign);
         }
         super.setCoreProperty(core, name, value);
     }

@@ -20,7 +20,7 @@ import se.bassac.roster.domain.DOrganizer;
 /**
  * The DOrganizer domain-object specific finders and methods go in this POJO.
  * 
- * Generated on 2013-06-14T20:04:52.499+0700.
+ * Generated on 2013-06-20T14:52:45.890+0700.
  * @author mardao DAO generator (net.sf.mardao.plugin.ProcessDomainMojo)
  */
 public class GeneratedDOrganizerDaoImpl extends TypeDaoImpl<DOrganizer, java.lang.Long> 
@@ -69,11 +69,11 @@ public class GeneratedDOrganizerDaoImpl extends TypeDaoImpl<DOrganizer, java.lan
             value = domain.getId();
         }
         // fields
-        else if (COLUMN_NAME_ADMINS.equals(name)) {
-            value = domain.getAdmins();
+        else if (COLUMN_NAME_ADMINIDS.equals(name)) {
+            value = domain.getAdminIds();
         }
-        else if (COLUMN_NAME_ATHLETES.equals(name)) {
-            value = domain.getAthletes();
+        else if (COLUMN_NAME_ATHLETEIDS.equals(name)) {
+            value = domain.getAthleteIds();
         }
         else if (COLUMN_NAME_CREATEDBY.equals(name)) {
             value = domain.getCreatedBy();
@@ -112,10 +112,10 @@ public class GeneratedDOrganizerDaoImpl extends TypeDaoImpl<DOrganizer, java.lan
             clazz = java.lang.Long.class;
         }
         // fields
-        else if (COLUMN_NAME_ADMINS.equals(name)) {
+        else if (COLUMN_NAME_ADMINIDS.equals(name)) {
             clazz = java.util.Collection.class;
         }
-        else if (COLUMN_NAME_ATHLETES.equals(name)) {
+        else if (COLUMN_NAME_ATHLETEIDS.equals(name)) {
             clazz = java.util.Collection.class;
         }
         else if (COLUMN_NAME_CREATEDBY.equals(name)) {
@@ -150,11 +150,11 @@ public class GeneratedDOrganizerDaoImpl extends TypeDaoImpl<DOrganizer, java.lan
             domain.setId((java.lang.Long) value);
         }
         // fields
-        else if (COLUMN_NAME_ADMINS.equals(name)) {
-            domain.setAdmins((java.util.Collection) value);
+        else if (COLUMN_NAME_ADMINIDS.equals(name)) {
+            domain.setAdminIds((java.util.Collection) value);
         }
-        else if (COLUMN_NAME_ATHLETES.equals(name)) {
-            domain.setAthletes((java.util.Collection) value);
+        else if (COLUMN_NAME_ATHLETEIDS.equals(name)) {
+            domain.setAthleteIds((java.util.Collection) value);
         }
         else if (COLUMN_NAME_CREATEDBY.equals(name)) {
             domain.setCreatedBy((java.lang.String) value);
@@ -286,31 +286,31 @@ public class GeneratedDOrganizerDaoImpl extends TypeDaoImpl<DOrganizer, java.lan
 	/**
          * {@inheritDoc}
 	 */
-	public final Iterable<DOrganizer> queryByAdmins(java.lang.Object admins) {
-            final Filter filter = createEqualsFilter(COLUMN_NAME_ADMINS, admins);
+	public final Iterable<DOrganizer> queryByAdminIds(java.lang.Object adminIds) {
+            final Filter filter = createEqualsFilter(COLUMN_NAME_ADMINIDS, adminIds);
             return queryIterable(false, 0, -1, null, null, null, false, null, false, filter);
 	}
 	
 	/**
-	 * query-key-by method for attribute field admins
-	 * @param admins the specified attribute
+	 * query-key-by method for attribute field adminIds
+	 * @param adminIds the specified attribute
 	 * @return an Iterable of keys to the DOrganizers with the specified attribute
 	 */
-	public final Iterable<java.lang.Long> queryKeysByAdmins(java.lang.Object admins) {
-            final Filter filter = createEqualsFilter(COLUMN_NAME_ADMINS, admins);
+	public final Iterable<java.lang.Long> queryKeysByAdminIds(java.lang.Object adminIds) {
+            final Filter filter = createEqualsFilter(COLUMN_NAME_ADMINIDS, adminIds);
             return queryIterableKeys(0, -1, null, null, null, false, null, false, filter);
 	}
 
 	/**
-	 * query-page-by method for field admins
-	 * @param admins the specified attribute
+	 * query-page-by method for field adminIds
+	 * @param adminIds the specified attribute
          * @param pageSize the number of domain entities in the page
          * @param cursorString non-null if get next page
-	 * @return a Page of DOrganizers for the specified admins
+	 * @return a Page of DOrganizers for the specified adminIds
 	 */
-	public final CursorPage<DOrganizer, java.lang.Long> queryPageByAdmins(java.lang.Object admins,
+	public final CursorPage<DOrganizer, java.lang.Long> queryPageByAdminIds(java.lang.Object adminIds,
             int pageSize, String cursorString) {
-            final Filter filter = createEqualsFilter(COLUMN_NAME_ADMINS, admins);
+            final Filter filter = createEqualsFilter(COLUMN_NAME_ADMINIDS, adminIds);
             return queryPage(false, pageSize, null, null, null, false, null, false, cursorString, filter);
         }
 
@@ -318,31 +318,31 @@ public class GeneratedDOrganizerDaoImpl extends TypeDaoImpl<DOrganizer, java.lan
 	/**
          * {@inheritDoc}
 	 */
-	public final Iterable<DOrganizer> queryByAthletes(java.lang.Object athletes) {
-            final Filter filter = createEqualsFilter(COLUMN_NAME_ATHLETES, athletes);
+	public final Iterable<DOrganizer> queryByAthleteIds(java.lang.Object athleteIds) {
+            final Filter filter = createEqualsFilter(COLUMN_NAME_ATHLETEIDS, athleteIds);
             return queryIterable(false, 0, -1, null, null, null, false, null, false, filter);
 	}
 	
 	/**
-	 * query-key-by method for attribute field athletes
-	 * @param athletes the specified attribute
+	 * query-key-by method for attribute field athleteIds
+	 * @param athleteIds the specified attribute
 	 * @return an Iterable of keys to the DOrganizers with the specified attribute
 	 */
-	public final Iterable<java.lang.Long> queryKeysByAthletes(java.lang.Object athletes) {
-            final Filter filter = createEqualsFilter(COLUMN_NAME_ATHLETES, athletes);
+	public final Iterable<java.lang.Long> queryKeysByAthleteIds(java.lang.Object athleteIds) {
+            final Filter filter = createEqualsFilter(COLUMN_NAME_ATHLETEIDS, athleteIds);
             return queryIterableKeys(0, -1, null, null, null, false, null, false, filter);
 	}
 
 	/**
-	 * query-page-by method for field athletes
-	 * @param athletes the specified attribute
+	 * query-page-by method for field athleteIds
+	 * @param athleteIds the specified attribute
          * @param pageSize the number of domain entities in the page
          * @param cursorString non-null if get next page
-	 * @return a Page of DOrganizers for the specified athletes
+	 * @return a Page of DOrganizers for the specified athleteIds
 	 */
-	public final CursorPage<DOrganizer, java.lang.Long> queryPageByAthletes(java.lang.Object athletes,
+	public final CursorPage<DOrganizer, java.lang.Long> queryPageByAthleteIds(java.lang.Object athleteIds,
             int pageSize, String cursorString) {
-            final Filter filter = createEqualsFilter(COLUMN_NAME_ATHLETES, athletes);
+            final Filter filter = createEqualsFilter(COLUMN_NAME_ATHLETEIDS, athleteIds);
             return queryPage(false, pageSize, null, null, null, false, null, false, cursorString, filter);
         }
 
@@ -509,8 +509,8 @@ public class GeneratedDOrganizerDaoImpl extends TypeDaoImpl<DOrganizer, java.lan
 	 * Persist an entity given all attributes
 	 */
 	public DOrganizer persist(		java.lang.Long id, 
-		java.util.Collection admins, 
-		java.util.Collection athletes, 
+		java.util.Collection adminIds, 
+		java.util.Collection athleteIds, 
 		java.lang.String name) {
 
             DOrganizer domain = null;
@@ -527,8 +527,8 @@ public class GeneratedDOrganizerDaoImpl extends TypeDaoImpl<DOrganizer, java.lan
                             domain.setId(id);
                     }
                     // fields
-                    domain.setAdmins(admins);
-                    domain.setAthletes(athletes);
+                    domain.setAdminIds(adminIds);
+                    domain.setAthleteIds(athleteIds);
                     domain.setName(name);
                     // one-to-ones
                     // many-to-ones
@@ -543,13 +543,13 @@ public class GeneratedDOrganizerDaoImpl extends TypeDaoImpl<DOrganizer, java.lan
 	 * Persists an entity unless it already exists
 	 */
 	public DOrganizer persist(java.lang.String name, 
-                java.util.Collection admins, 
-                java.util.Collection athletes) {
+                java.util.Collection adminIds, 
+                java.util.Collection athleteIds) {
             DOrganizer domain = findByName(name);
             if (null == domain) {
                 domain = new DOrganizer();
-                domain.setAdmins(admins);
-                domain.setAthletes(athletes);
+                domain.setAdminIds(adminIds);
+                domain.setAthleteIds(athleteIds);
                 domain.setName(name);
                 persist(domain);
             }

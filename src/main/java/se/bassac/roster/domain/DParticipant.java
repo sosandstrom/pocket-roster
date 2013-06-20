@@ -17,7 +17,10 @@ import net.sf.mardao.core.domain.AbstractLongEntity;
  * @author sosandstrom
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"raceClass", "bibNumber"}))
+@Table(uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"raceClass", "bibNumber"}),
+        @UniqueConstraint(columnNames = {"raceClass", "athleteKey"})
+})
 public class DParticipant extends AbstractLongEntity {
 
     @Parent(kind="DAthlete")

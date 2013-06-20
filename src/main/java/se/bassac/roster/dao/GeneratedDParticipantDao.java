@@ -12,7 +12,7 @@ import net.sf.mardao.core.geo.DLocation;
 /**
  * DAO interface with finder methods for DParticipant entities.
  *
- * Generated on 2013-06-14T20:04:52.499+0700.
+ * Generated on 2013-06-20T14:52:45.890+0700.
  * @author mardao DAO generator (net.sf.mardao.plugin.ProcessDomainMojo)
  */
 public interface GeneratedDParticipantDao extends Dao<DParticipant, java.lang.Long> {
@@ -260,6 +260,13 @@ public interface GeneratedDParticipantDao extends Dao<DParticipant, java.lang.Lo
 	 * @return the unique DParticipant for the specified fields
 	 */
 	DParticipant findByBibNumberRaceClass(java.lang.String bibNumber, se.bassac.roster.domain.DClass raceClass);
+
+	/**
+	 * find-by method for unique fields
+	 * @param raceClass the specified raceClass
+	 * @return the unique DParticipant for the specified fields
+	 */
+	DParticipant findByRaceClass(se.bassac.roster.domain.DClass raceClass);
 
 	
 	// ----------------------- populate / persist method -------------------------

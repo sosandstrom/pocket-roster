@@ -21,7 +21,7 @@ import se.bassac.roster.domain.DSeries;
 /**
  * The DRace domain-object specific finders and methods go in this POJO.
  * 
- * Generated on 2013-06-14T20:04:52.499+0700.
+ * Generated on 2013-06-20T14:52:45.890+0700.
  * @author mardao DAO generator (net.sf.mardao.plugin.ProcessDomainMojo)
  */
 public class GeneratedDRaceDaoImpl extends TypeDaoImpl<DRace, java.lang.Long> 
@@ -99,9 +99,7 @@ public class GeneratedDRaceDaoImpl extends TypeDaoImpl<DRace, java.lang.Long>
         // one-to-ones
         // many-to-ones
         else if (COLUMN_NAME_SERIES.equals(name)) {
-            final se.bassac.roster.domain.DSeries foreign = domain.getSeries();
-            final Object foreignKey = seriesDao.getPrimaryKey(foreign);
-            value = foreignKey;
+            value = domain.getSeries();
         }
         // many-to-manys
         else {
@@ -178,13 +176,7 @@ public class GeneratedDRaceDaoImpl extends TypeDaoImpl<DRace, java.lang.Long>
         else if (COLUMN_NAME_SERIES.equals(name)) {
             DSeries foreign = null;
             if (null != value) {
-                try {
-                    foreign = seriesDao.createDomain(value);
-                } catch (InstantiationException ex) {
-                    LOG.error("Creating foreign domain", ex);
-                } catch (IllegalAccessException ex) {
-                    LOG.error("Creating foreign domain", ex);
-                }
+                foreign = seriesDao.createDomain(value);
             }
             domain.setSeries(foreign);
         }
@@ -215,6 +207,11 @@ public class GeneratedDRaceDaoImpl extends TypeDaoImpl<DRace, java.lang.Long>
         }
         else if (null == value) {
             // do nothing in particular, will call super at end
+        }
+        else if (COLUMN_NAME_SERIES.equals(name)) {
+            // many-to-one: replace foreign entity with its primary key
+            DSeries foreign = (DSeries) value;
+            value = seriesDao.getPrimaryKey(foreign);
         }
         super.setCoreProperty(core, name, value);
     }

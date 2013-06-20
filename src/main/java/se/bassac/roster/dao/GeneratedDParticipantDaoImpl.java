@@ -21,7 +21,7 @@ import se.bassac.roster.domain.DClass;
 /**
  * The DParticipant domain-object specific finders and methods go in this POJO.
  * 
- * Generated on 2013-06-14T20:04:52.499+0700.
+ * Generated on 2013-06-20T14:52:45.890+0700.
  * @author mardao DAO generator (net.sf.mardao.plugin.ProcessDomainMojo)
  */
 public class GeneratedDParticipantDaoImpl extends TypeDaoImpl<DParticipant, java.lang.Long> 
@@ -103,9 +103,7 @@ public class GeneratedDParticipantDaoImpl extends TypeDaoImpl<DParticipant, java
         // one-to-ones
         // many-to-ones
         else if (COLUMN_NAME_RACECLASS.equals(name)) {
-            final se.bassac.roster.domain.DClass foreign = domain.getRaceClass();
-            final Object foreignKey = raceClassDao.getPrimaryKey(foreign);
-            value = foreignKey;
+            value = domain.getRaceClass();
         }
         // many-to-manys
         else {
@@ -190,13 +188,7 @@ public class GeneratedDParticipantDaoImpl extends TypeDaoImpl<DParticipant, java
         else if (COLUMN_NAME_RACECLASS.equals(name)) {
             DClass foreign = null;
             if (null != value) {
-                try {
-                    foreign = raceClassDao.createDomain(value);
-                } catch (InstantiationException ex) {
-                    LOG.error("Creating foreign domain", ex);
-                } catch (IllegalAccessException ex) {
-                    LOG.error("Creating foreign domain", ex);
-                }
+                foreign = raceClassDao.createDomain(value);
             }
             domain.setRaceClass(foreign);
         }
@@ -227,6 +219,11 @@ public class GeneratedDParticipantDaoImpl extends TypeDaoImpl<DParticipant, java
         }
         else if (null == value) {
             // do nothing in particular, will call super at end
+        }
+        else if (COLUMN_NAME_RACECLASS.equals(name)) {
+            // many-to-one: replace foreign entity with its primary key
+            DClass foreign = (DClass) value;
+            value = raceClassDao.getPrimaryKey(foreign);
         }
         super.setCoreProperty(core, name, value);
     }
@@ -594,7 +591,20 @@ public class GeneratedDParticipantDaoImpl extends TypeDaoImpl<DParticipant, java
 		final Filter[] filters = new Filter[2];
                 int i = 0;
                 filters[i++] = createEqualsFilter(COLUMN_NAME_BIBNUMBER, bibNumber);
-                filters[i++] = createEqualsFilter(COLUMN_NAME_RACECLASS, raceClass);
+                final Object foreignKey = raceClassDao.getPrimaryKey(raceClass);
+                filters[i++] = createEqualsFilter(COLUMN_NAME_RACECLASS, foreignKey);
+		return findUniqueBy(filters);
+	}
+	/**
+	 * find-by method for unique attributes
+	 * @param raceClass the specified raceClass
+	 * @return the unique DParticipant for the specified fields
+	 */
+	public final DParticipant findByRaceClass(se.bassac.roster.domain.DClass raceClass) {
+		final Filter[] filters = new Filter[1];
+                int i = 0;
+                final Object foreignKey = raceClassDao.getPrimaryKey(raceClass);
+                filters[i++] = createEqualsFilter(COLUMN_NAME_RACECLASS, foreignKey);
 		return findUniqueBy(filters);
 	}
 
