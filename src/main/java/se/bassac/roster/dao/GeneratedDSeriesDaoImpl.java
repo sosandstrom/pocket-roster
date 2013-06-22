@@ -20,7 +20,7 @@ import se.bassac.roster.domain.DSeries;
 /**
  * The DSeries domain-object specific finders and methods go in this POJO.
  * 
- * Generated on 2013-06-20T14:52:45.890+0700.
+ * Generated on 2013-06-21T13:19:20.220+0700.
  * @author mardao DAO generator (net.sf.mardao.plugin.ProcessDomainMojo)
  */
 public class GeneratedDSeriesDaoImpl extends TypeDaoImpl<DSeries, java.lang.Long> 

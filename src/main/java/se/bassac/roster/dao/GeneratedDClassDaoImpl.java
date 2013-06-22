@@ -21,7 +21,7 @@ import se.bassac.roster.domain.DTrack;
 /**
  * The DClass domain-object specific finders and methods go in this POJO.
  * 
- * Generated on 2013-06-20T14:52:45.890+0700.
+ * Generated on 2013-06-21T13:19:20.220+0700.
  * @author mardao DAO generator (net.sf.mardao.plugin.ProcessDomainMojo)
  */
 public class GeneratedDClassDaoImpl extends TypeDaoImpl<DClass, java.lang.Long> 
@@ -606,8 +606,7 @@ public class GeneratedDClassDaoImpl extends TypeDaoImpl<DClass, java.lang.Long>
 	 */
 	public final Iterable<DClass> queryByTrack(se.bassac.roster.domain.DTrack track) {
             final Object foreignKey = trackDao.getPrimaryKey(track);
-            final Filter filter = createEqualsFilter(COLUMN_NAME_TRACK, foreignKey);
-            return queryIterable(false, 0, -1, null, null, null, false, null, false, filter);
+            return queryByTrackKey(foreignKey);
 	}
 
 	/**
@@ -620,8 +619,7 @@ public class GeneratedDClassDaoImpl extends TypeDaoImpl<DClass, java.lang.Long>
 	public final CursorPage<DClass, java.lang.Long> queryPageByTrack(se.bassac.roster.domain.DTrack track,
                 int pageSize, String cursorString) {
             final Object foreignKey = trackDao.getPrimaryKey(track);
-            final Filter filter = createEqualsFilter(COLUMN_NAME_TRACK, foreignKey);
-            return queryPage(false, pageSize, null, null, null, false, null, false, cursorString, filter);
+            return queryPageByTrackKey(foreignKey, pageSize, cursorString);
         }
 
 	/**
@@ -632,8 +630,7 @@ public class GeneratedDClassDaoImpl extends TypeDaoImpl<DClass, java.lang.Long>
 	 */
 	public final Iterable<java.lang.Long> queryKeysByTrack(se.bassac.roster.domain.DTrack track) {
             final Object foreignKey = trackDao.getPrimaryKey(track);
-            final Filter filter = createEqualsFilter(COLUMN_NAME_TRACK, foreignKey);
-            return queryIterableKeys(0, -1, null, null, null, false, null, false, filter);
+            return queryKeysByTrackKey(foreignKey);
 	}
 
 	/**
@@ -659,6 +656,42 @@ public class GeneratedDClassDaoImpl extends TypeDaoImpl<DClass, java.lang.Long>
 	}
 
 	
+	/**
+	 * query-by method for many-to-one field track
+	 * @param trackKey the related se.bassac.roster.domain.DTrack entity's primary key
+         * @since 2.3.3
+	 * @return an Iterable of DClasss belonging to the many-to-one relation
+	 */
+	public final Iterable<DClass> queryByTrackKey(Object trackKey) {
+            final Filter filter = createEqualsFilter(COLUMN_NAME_TRACK, trackKey);
+            return queryIterable(false, 0, -1, null, null, null, false, null, false, filter);
+	}
+
+	/**
+	 * query-keys-by method for many-to-one field track
+	 * @param trackKey the related se.bassac.roster.domain.DTrack entity's primary key
+         * @since 2.3.3
+	 * @return an Iterable of java.lang.Long keys belonging to the many-to-one relation
+	 */
+	public final Iterable<java.lang.Long> queryKeysByTrackKey(Object trackKey) {
+            final Filter filter = createEqualsFilter(COLUMN_NAME_TRACK, trackKey);
+            return queryIterableKeys(0, -1, null, null, null, false, null, false, filter);
+	}
+
+	/**
+	 * query-page-by method for many-to-one field track
+	 * @param trackKey the related se.bassac.roster.domain.DTrack primary key
+         * @param pageSize the number of domain entities in the page
+         * @param cursorString non-null if get next page
+         * @since 2.3.3
+	 * @return a CursorPage of DClasss belonging to the many-to-one relation
+	 */
+	public final CursorPage<DClass, java.lang.Long> queryPageByTrackKey(Object trackKey,
+                int pageSize, String cursorString) {
+            final Filter filter = createEqualsFilter(COLUMN_NAME_TRACK, trackKey);
+            return queryPage(false, pageSize, null, null, null, false, null, false, cursorString, filter);
+        }
+
 
 	// ----------------------- many-to-many finders -------------------------
 

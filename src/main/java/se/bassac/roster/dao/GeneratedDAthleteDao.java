@@ -12,7 +12,7 @@ import net.sf.mardao.core.geo.DLocation;
 /**
  * DAO interface with finder methods for DAthlete entities.
  *
- * Generated on 2013-06-20T14:52:45.890+0700.
+ * Generated on 2013-06-21T13:19:20.220+0700.
  * @author mardao DAO generator (net.sf.mardao.plugin.ProcessDomainMojo)
  */
 public interface GeneratedDAthleteDao extends Dao<DAthlete, java.lang.Long> {

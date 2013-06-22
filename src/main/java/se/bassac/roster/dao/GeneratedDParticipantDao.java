@@ -12,7 +12,7 @@ import net.sf.mardao.core.geo.DLocation;
 /**
  * DAO interface with finder methods for DParticipant entities.
  *
- * Generated on 2013-06-20T14:52:45.890+0700.
+ * Generated on 2013-06-21T13:19:20.220+0700.
  * @author mardao DAO generator (net.sf.mardao.plugin.ProcessDomainMojo)
  */
 public interface GeneratedDParticipantDao extends Dao<DParticipant, java.lang.Long> {
@@ -248,6 +248,34 @@ public interface GeneratedDParticipantDao extends Dao<DParticipant, java.lang.Lo
 	 */
 	Iterable<java.lang.Long> queryKeysByRaceClassId(java.lang.Long id);
 	
+
+	/**
+	 * query-by method for many-to-one field raceClass
+	 * @param raceClassKey the related se.bassac.roster.domain.DClass entity's primary key
+         * @since 2.3.3
+	 * @return an Iterable of DParticipants belonging to the many-to-one relation
+	 */
+	Iterable<DParticipant> queryByRaceClassKey(Object raceClassKey);
+
+	/**
+	 * query-keys-by method for many-to-one field raceClass
+	 * @param raceClassKey the related se.bassac.roster.domain.DClass entity's primary key
+         * @since 2.3.3
+	 * @return an Iterable of java.lang.Long keys belonging to the many-to-one relation
+	 */
+	Iterable<java.lang.Long> queryKeysByRaceClassKey(Object raceClassKey);
+
+	/**
+	 * query-page-by method for many-to-one field raceClass
+	 * @param raceClassKey the related se.bassac.roster.domain.DClass primary key
+         * @param pageSize the number of domain entities in the page
+         * @param cursorString non-null if get next page
+         * @since 2.3.3
+	 * @return a CursorPage of DParticipants belonging to the many-to-one relation
+	 */
+	CursorPage<DParticipant, java.lang.Long> queryPageByRaceClassKey(Object raceClassKey,
+                int pageSize, String cursorString);
+
 	
 	// ----------------------- many-to-many finders -------------------------
 

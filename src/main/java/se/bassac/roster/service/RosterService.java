@@ -8,11 +8,16 @@ import com.google.appengine.api.utils.SystemProperty;
 import com.wadpam.gaelic.appengine.DomainNamespaceFilter;
 import com.wadpam.gaelic.dao.DAppDomainDao;
 import com.wadpam.gaelic.exception.ConflictException;
+import com.wadpam.gaelic.json.JCursorPage;
 import com.wadpam.gaelic.security.SecurityDetailsService;
+import com.wadpam.gaelic.web.MardaoPrincipalInterceptor;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import net.sf.mardao.core.CursorPage;
+import net.sf.mardao.core.dao.DaoImpl;
 import se.bassac.roster.dao.DAthleteDao;
 import se.bassac.roster.dao.DCheckpointDao;
 import se.bassac.roster.dao.DClassDao;
@@ -95,7 +100,16 @@ public class RosterService {
         return classKey;
     }
     
+    public CursorPage<DParticipant, Long> getParticipants(HttpServletRequest request, 
+            long raceId, long classId, int pageSize, String cursorKey) {
+        final Object classKey = getClassKey(raceId, classId);
+        final CursorPage<DParticipant, Long> page = participantDao.queryPageByRaceClassKey(classKey, pageSize, cursorKey);
+        return page;
+    }
+    
     public void init() {
+        DaoImpl.setPrincipalName("<init>");
+        
         // Application initialization
         if (SystemProperty.Environment.Value.Development == SystemProperty.environment.value()) {
             
@@ -250,6 +264,6 @@ public class RosterService {
     public void setTrackDao(DTrackDao trackDao) {
         this.trackDao = trackDao;
     }
-    
+
     
 }

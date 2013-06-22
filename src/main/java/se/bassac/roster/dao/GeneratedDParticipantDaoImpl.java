@@ -21,7 +21,7 @@ import se.bassac.roster.domain.DClass;
 /**
  * The DParticipant domain-object specific finders and methods go in this POJO.
  * 
- * Generated on 2013-06-20T14:52:45.890+0700.
+ * Generated on 2013-06-21T13:19:20.220+0700.
  * @author mardao DAO generator (net.sf.mardao.plugin.ProcessDomainMojo)
  */
 public class GeneratedDParticipantDaoImpl extends TypeDaoImpl<DParticipant, java.lang.Long> 
@@ -524,8 +524,7 @@ public class GeneratedDParticipantDaoImpl extends TypeDaoImpl<DParticipant, java
 	 */
 	public final Iterable<DParticipant> queryByRaceClass(se.bassac.roster.domain.DClass raceClass) {
             final Object foreignKey = raceClassDao.getPrimaryKey(raceClass);
-            final Filter filter = createEqualsFilter(COLUMN_NAME_RACECLASS, foreignKey);
-            return queryIterable(false, 0, -1, null, null, null, false, null, false, filter);
+            return queryByRaceClassKey(foreignKey);
 	}
 
 	/**
@@ -538,8 +537,7 @@ public class GeneratedDParticipantDaoImpl extends TypeDaoImpl<DParticipant, java
 	public final CursorPage<DParticipant, java.lang.Long> queryPageByRaceClass(se.bassac.roster.domain.DClass raceClass,
                 int pageSize, String cursorString) {
             final Object foreignKey = raceClassDao.getPrimaryKey(raceClass);
-            final Filter filter = createEqualsFilter(COLUMN_NAME_RACECLASS, foreignKey);
-            return queryPage(false, pageSize, null, null, null, false, null, false, cursorString, filter);
+            return queryPageByRaceClassKey(foreignKey, pageSize, cursorString);
         }
 
 	/**
@@ -550,8 +548,7 @@ public class GeneratedDParticipantDaoImpl extends TypeDaoImpl<DParticipant, java
 	 */
 	public final Iterable<java.lang.Long> queryKeysByRaceClass(se.bassac.roster.domain.DClass raceClass) {
             final Object foreignKey = raceClassDao.getPrimaryKey(raceClass);
-            final Filter filter = createEqualsFilter(COLUMN_NAME_RACECLASS, foreignKey);
-            return queryIterableKeys(0, -1, null, null, null, false, null, false, filter);
+            return queryKeysByRaceClassKey(foreignKey);
 	}
 
 	/**
@@ -577,6 +574,42 @@ public class GeneratedDParticipantDaoImpl extends TypeDaoImpl<DParticipant, java
 	}
 
 	
+	/**
+	 * query-by method for many-to-one field raceClass
+	 * @param raceClassKey the related se.bassac.roster.domain.DClass entity's primary key
+         * @since 2.3.3
+	 * @return an Iterable of DParticipants belonging to the many-to-one relation
+	 */
+	public final Iterable<DParticipant> queryByRaceClassKey(Object raceClassKey) {
+            final Filter filter = createEqualsFilter(COLUMN_NAME_RACECLASS, raceClassKey);
+            return queryIterable(false, 0, -1, null, null, null, false, null, false, filter);
+	}
+
+	/**
+	 * query-keys-by method for many-to-one field raceClass
+	 * @param raceClassKey the related se.bassac.roster.domain.DClass entity's primary key
+         * @since 2.3.3
+	 * @return an Iterable of java.lang.Long keys belonging to the many-to-one relation
+	 */
+	public final Iterable<java.lang.Long> queryKeysByRaceClassKey(Object raceClassKey) {
+            final Filter filter = createEqualsFilter(COLUMN_NAME_RACECLASS, raceClassKey);
+            return queryIterableKeys(0, -1, null, null, null, false, null, false, filter);
+	}
+
+	/**
+	 * query-page-by method for many-to-one field raceClass
+	 * @param raceClassKey the related se.bassac.roster.domain.DClass primary key
+         * @param pageSize the number of domain entities in the page
+         * @param cursorString non-null if get next page
+         * @since 2.3.3
+	 * @return a CursorPage of DParticipants belonging to the many-to-one relation
+	 */
+	public final CursorPage<DParticipant, java.lang.Long> queryPageByRaceClassKey(Object raceClassKey,
+                int pageSize, String cursorString) {
+            final Filter filter = createEqualsFilter(COLUMN_NAME_RACECLASS, raceClassKey);
+            return queryPage(false, pageSize, null, null, null, false, null, false, cursorString, filter);
+        }
+
 
 	// ----------------------- many-to-many finders -------------------------
 
@@ -591,8 +624,8 @@ public class GeneratedDParticipantDaoImpl extends TypeDaoImpl<DParticipant, java
 		final Filter[] filters = new Filter[2];
                 int i = 0;
                 filters[i++] = createEqualsFilter(COLUMN_NAME_BIBNUMBER, bibNumber);
-                final Object foreignKey = raceClassDao.getPrimaryKey(raceClass);
-                filters[i++] = createEqualsFilter(COLUMN_NAME_RACECLASS, foreignKey);
+                final Object raceClassKey = raceClassDao.getPrimaryKey(raceClass);
+                filters[i++] = createEqualsFilter(COLUMN_NAME_RACECLASS, raceClassKey);
 		return findUniqueBy(filters);
 	}
 	/**
@@ -603,8 +636,8 @@ public class GeneratedDParticipantDaoImpl extends TypeDaoImpl<DParticipant, java
 	public final DParticipant findByRaceClass(se.bassac.roster.domain.DClass raceClass) {
 		final Filter[] filters = new Filter[1];
                 int i = 0;
-                final Object foreignKey = raceClassDao.getPrimaryKey(raceClass);
-                filters[i++] = createEqualsFilter(COLUMN_NAME_RACECLASS, foreignKey);
+                final Object raceClassKey = raceClassDao.getPrimaryKey(raceClass);
+                filters[i++] = createEqualsFilter(COLUMN_NAME_RACECLASS, raceClassKey);
 		return findUniqueBy(filters);
 	}
 

@@ -21,7 +21,7 @@ import se.bassac.roster.domain.DCheckpoint;
 /**
  * The DMilestone domain-object specific finders and methods go in this POJO.
  * 
- * Generated on 2013-06-20T14:52:45.890+0700.
+ * Generated on 2013-06-21T13:19:20.220+0700.
  * @author mardao DAO generator (net.sf.mardao.plugin.ProcessDomainMojo)
  */
 public class GeneratedDMilestoneDaoImpl extends TypeDaoImpl<DMilestone, java.lang.Long> 
@@ -606,8 +606,7 @@ public class GeneratedDMilestoneDaoImpl extends TypeDaoImpl<DMilestone, java.lan
 	 */
 	public final Iterable<DMilestone> queryByCheckpoint(se.bassac.roster.domain.DCheckpoint checkpoint) {
             final Object foreignKey = checkpointDao.getPrimaryKey(checkpoint);
-            final Filter filter = createEqualsFilter(COLUMN_NAME_CHECKPOINT, foreignKey);
-            return queryIterable(false, 0, -1, null, null, null, false, null, false, filter);
+            return queryByCheckpointKey(foreignKey);
 	}
 
 	/**
@@ -620,8 +619,7 @@ public class GeneratedDMilestoneDaoImpl extends TypeDaoImpl<DMilestone, java.lan
 	public final CursorPage<DMilestone, java.lang.Long> queryPageByCheckpoint(se.bassac.roster.domain.DCheckpoint checkpoint,
                 int pageSize, String cursorString) {
             final Object foreignKey = checkpointDao.getPrimaryKey(checkpoint);
-            final Filter filter = createEqualsFilter(COLUMN_NAME_CHECKPOINT, foreignKey);
-            return queryPage(false, pageSize, null, null, null, false, null, false, cursorString, filter);
+            return queryPageByCheckpointKey(foreignKey, pageSize, cursorString);
         }
 
 	/**
@@ -632,8 +630,7 @@ public class GeneratedDMilestoneDaoImpl extends TypeDaoImpl<DMilestone, java.lan
 	 */
 	public final Iterable<java.lang.Long> queryKeysByCheckpoint(se.bassac.roster.domain.DCheckpoint checkpoint) {
             final Object foreignKey = checkpointDao.getPrimaryKey(checkpoint);
-            final Filter filter = createEqualsFilter(COLUMN_NAME_CHECKPOINT, foreignKey);
-            return queryIterableKeys(0, -1, null, null, null, false, null, false, filter);
+            return queryKeysByCheckpointKey(foreignKey);
 	}
 
 	/**
@@ -659,6 +656,42 @@ public class GeneratedDMilestoneDaoImpl extends TypeDaoImpl<DMilestone, java.lan
 	}
 
 	
+	/**
+	 * query-by method for many-to-one field checkpoint
+	 * @param checkpointKey the related se.bassac.roster.domain.DCheckpoint entity's primary key
+         * @since 2.3.3
+	 * @return an Iterable of DMilestones belonging to the many-to-one relation
+	 */
+	public final Iterable<DMilestone> queryByCheckpointKey(Object checkpointKey) {
+            final Filter filter = createEqualsFilter(COLUMN_NAME_CHECKPOINT, checkpointKey);
+            return queryIterable(false, 0, -1, null, null, null, false, null, false, filter);
+	}
+
+	/**
+	 * query-keys-by method for many-to-one field checkpoint
+	 * @param checkpointKey the related se.bassac.roster.domain.DCheckpoint entity's primary key
+         * @since 2.3.3
+	 * @return an Iterable of java.lang.Long keys belonging to the many-to-one relation
+	 */
+	public final Iterable<java.lang.Long> queryKeysByCheckpointKey(Object checkpointKey) {
+            final Filter filter = createEqualsFilter(COLUMN_NAME_CHECKPOINT, checkpointKey);
+            return queryIterableKeys(0, -1, null, null, null, false, null, false, filter);
+	}
+
+	/**
+	 * query-page-by method for many-to-one field checkpoint
+	 * @param checkpointKey the related se.bassac.roster.domain.DCheckpoint primary key
+         * @param pageSize the number of domain entities in the page
+         * @param cursorString non-null if get next page
+         * @since 2.3.3
+	 * @return a CursorPage of DMilestones belonging to the many-to-one relation
+	 */
+	public final CursorPage<DMilestone, java.lang.Long> queryPageByCheckpointKey(Object checkpointKey,
+                int pageSize, String cursorString) {
+            final Filter filter = createEqualsFilter(COLUMN_NAME_CHECKPOINT, checkpointKey);
+            return queryPage(false, pageSize, null, null, null, false, null, false, cursorString, filter);
+        }
+
 
 	// ----------------------- many-to-many finders -------------------------
 

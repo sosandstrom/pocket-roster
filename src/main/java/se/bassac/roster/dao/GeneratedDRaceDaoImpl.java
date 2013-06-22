@@ -21,7 +21,7 @@ import se.bassac.roster.domain.DSeries;
 /**
  * The DRace domain-object specific finders and methods go in this POJO.
  * 
- * Generated on 2013-06-20T14:52:45.890+0700.
+ * Generated on 2013-06-21T13:19:20.220+0700.
  * @author mardao DAO generator (net.sf.mardao.plugin.ProcessDomainMojo)
  */
 public class GeneratedDRaceDaoImpl extends TypeDaoImpl<DRace, java.lang.Long> 
@@ -468,8 +468,7 @@ public class GeneratedDRaceDaoImpl extends TypeDaoImpl<DRace, java.lang.Long>
 	 */
 	public final Iterable<DRace> queryBySeries(se.bassac.roster.domain.DSeries series) {
             final Object foreignKey = seriesDao.getPrimaryKey(series);
-            final Filter filter = createEqualsFilter(COLUMN_NAME_SERIES, foreignKey);
-            return queryIterable(false, 0, -1, null, null, null, false, null, false, filter);
+            return queryBySeriesKey(foreignKey);
 	}
 
 	/**
@@ -482,8 +481,7 @@ public class GeneratedDRaceDaoImpl extends TypeDaoImpl<DRace, java.lang.Long>
 	public final CursorPage<DRace, java.lang.Long> queryPageBySeries(se.bassac.roster.domain.DSeries series,
                 int pageSize, String cursorString) {
             final Object foreignKey = seriesDao.getPrimaryKey(series);
-            final Filter filter = createEqualsFilter(COLUMN_NAME_SERIES, foreignKey);
-            return queryPage(false, pageSize, null, null, null, false, null, false, cursorString, filter);
+            return queryPageBySeriesKey(foreignKey, pageSize, cursorString);
         }
 
 	/**
@@ -494,8 +492,7 @@ public class GeneratedDRaceDaoImpl extends TypeDaoImpl<DRace, java.lang.Long>
 	 */
 	public final Iterable<java.lang.Long> queryKeysBySeries(se.bassac.roster.domain.DSeries series) {
             final Object foreignKey = seriesDao.getPrimaryKey(series);
-            final Filter filter = createEqualsFilter(COLUMN_NAME_SERIES, foreignKey);
-            return queryIterableKeys(0, -1, null, null, null, false, null, false, filter);
+            return queryKeysBySeriesKey(foreignKey);
 	}
 
 	/**
@@ -521,6 +518,42 @@ public class GeneratedDRaceDaoImpl extends TypeDaoImpl<DRace, java.lang.Long>
 	}
 
 	
+	/**
+	 * query-by method for many-to-one field series
+	 * @param seriesKey the related se.bassac.roster.domain.DSeries entity's primary key
+         * @since 2.3.3
+	 * @return an Iterable of DRaces belonging to the many-to-one relation
+	 */
+	public final Iterable<DRace> queryBySeriesKey(Object seriesKey) {
+            final Filter filter = createEqualsFilter(COLUMN_NAME_SERIES, seriesKey);
+            return queryIterable(false, 0, -1, null, null, null, false, null, false, filter);
+	}
+
+	/**
+	 * query-keys-by method for many-to-one field series
+	 * @param seriesKey the related se.bassac.roster.domain.DSeries entity's primary key
+         * @since 2.3.3
+	 * @return an Iterable of java.lang.Long keys belonging to the many-to-one relation
+	 */
+	public final Iterable<java.lang.Long> queryKeysBySeriesKey(Object seriesKey) {
+            final Filter filter = createEqualsFilter(COLUMN_NAME_SERIES, seriesKey);
+            return queryIterableKeys(0, -1, null, null, null, false, null, false, filter);
+	}
+
+	/**
+	 * query-page-by method for many-to-one field series
+	 * @param seriesKey the related se.bassac.roster.domain.DSeries primary key
+         * @param pageSize the number of domain entities in the page
+         * @param cursorString non-null if get next page
+         * @since 2.3.3
+	 * @return a CursorPage of DRaces belonging to the many-to-one relation
+	 */
+	public final CursorPage<DRace, java.lang.Long> queryPageBySeriesKey(Object seriesKey,
+                int pageSize, String cursorString) {
+            final Filter filter = createEqualsFilter(COLUMN_NAME_SERIES, seriesKey);
+            return queryPage(false, pageSize, null, null, null, false, null, false, cursorString, filter);
+        }
+
 
 	// ----------------------- many-to-many finders -------------------------
 

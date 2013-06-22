@@ -12,7 +12,7 @@ import net.sf.mardao.core.geo.DLocation;
 /**
  * DAO interface with finder methods for DRace entities.
  *
- * Generated on 2013-06-20T14:52:45.890+0700.
+ * Generated on 2013-06-21T13:19:20.220+0700.
  * @author mardao DAO generator (net.sf.mardao.plugin.ProcessDomainMojo)
  */
 public interface GeneratedDRaceDao extends Dao<DRace, java.lang.Long> {
@@ -220,6 +220,34 @@ public interface GeneratedDRaceDao extends Dao<DRace, java.lang.Long> {
 	 */
 	Iterable<java.lang.Long> queryKeysBySeriesId(java.lang.Long id);
 	
+
+	/**
+	 * query-by method for many-to-one field series
+	 * @param seriesKey the related se.bassac.roster.domain.DSeries entity's primary key
+         * @since 2.3.3
+	 * @return an Iterable of DRaces belonging to the many-to-one relation
+	 */
+	Iterable<DRace> queryBySeriesKey(Object seriesKey);
+
+	/**
+	 * query-keys-by method for many-to-one field series
+	 * @param seriesKey the related se.bassac.roster.domain.DSeries entity's primary key
+         * @since 2.3.3
+	 * @return an Iterable of java.lang.Long keys belonging to the many-to-one relation
+	 */
+	Iterable<java.lang.Long> queryKeysBySeriesKey(Object seriesKey);
+
+	/**
+	 * query-page-by method for many-to-one field series
+	 * @param seriesKey the related se.bassac.roster.domain.DSeries primary key
+         * @param pageSize the number of domain entities in the page
+         * @param cursorString non-null if get next page
+         * @since 2.3.3
+	 * @return a CursorPage of DRaces belonging to the many-to-one relation
+	 */
+	CursorPage<DRace, java.lang.Long> queryPageBySeriesKey(Object seriesKey,
+                int pageSize, String cursorString);
+
 	
 	// ----------------------- many-to-many finders -------------------------
 

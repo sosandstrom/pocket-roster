@@ -12,7 +12,7 @@ import net.sf.mardao.core.geo.DLocation;
 /**
  * DAO interface with finder methods for DMilestone entities.
  *
- * Generated on 2013-06-20T14:52:45.890+0700.
+ * Generated on 2013-06-21T13:19:20.220+0700.
  * @author mardao DAO generator (net.sf.mardao.plugin.ProcessDomainMojo)
  */
 public interface GeneratedDMilestoneDao extends Dao<DMilestone, java.lang.Long> {
@@ -306,6 +306,34 @@ public interface GeneratedDMilestoneDao extends Dao<DMilestone, java.lang.Long> 
 	 */
 	Iterable<java.lang.Long> queryKeysByCheckpointId(java.lang.Long id);
 	
+
+	/**
+	 * query-by method for many-to-one field checkpoint
+	 * @param checkpointKey the related se.bassac.roster.domain.DCheckpoint entity's primary key
+         * @since 2.3.3
+	 * @return an Iterable of DMilestones belonging to the many-to-one relation
+	 */
+	Iterable<DMilestone> queryByCheckpointKey(Object checkpointKey);
+
+	/**
+	 * query-keys-by method for many-to-one field checkpoint
+	 * @param checkpointKey the related se.bassac.roster.domain.DCheckpoint entity's primary key
+         * @since 2.3.3
+	 * @return an Iterable of java.lang.Long keys belonging to the many-to-one relation
+	 */
+	Iterable<java.lang.Long> queryKeysByCheckpointKey(Object checkpointKey);
+
+	/**
+	 * query-page-by method for many-to-one field checkpoint
+	 * @param checkpointKey the related se.bassac.roster.domain.DCheckpoint primary key
+         * @param pageSize the number of domain entities in the page
+         * @param cursorString non-null if get next page
+         * @since 2.3.3
+	 * @return a CursorPage of DMilestones belonging to the many-to-one relation
+	 */
+	CursorPage<DMilestone, java.lang.Long> queryPageByCheckpointKey(Object checkpointKey,
+                int pageSize, String cursorString);
+
 	
 	// ----------------------- many-to-many finders -------------------------
 
