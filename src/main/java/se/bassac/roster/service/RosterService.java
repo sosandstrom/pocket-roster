@@ -7,13 +7,13 @@ package se.bassac.roster.service;
 import com.google.appengine.api.utils.SystemProperty;
 import com.wadpam.gaelic.appengine.DomainNamespaceFilter;
 import com.wadpam.gaelic.dao.DAppDomainDao;
+import com.wadpam.gaelic.exception.BadRequestException;
 import com.wadpam.gaelic.exception.ConflictException;
-import com.wadpam.gaelic.json.JCursorPage;
 import com.wadpam.gaelic.security.SecurityDetailsService;
-import com.wadpam.gaelic.web.MardaoPrincipalInterceptor;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import net.sf.mardao.core.CursorPage;
@@ -75,6 +75,33 @@ public class RosterService {
         this.seriesDao = seriesDao;
         this.timingsDao = timingsDao;
         this.trackDao = trackDao;
+    }
+    
+    public DOrganizer createOrganizer(String name, Long creatorId) {
+        List<Long> adminIds = Arrays.asList(creatorId);
+        DOrganizer org = organizerDao.persist(null, adminIds, adminIds, name);
+        return org;
+    }
+    
+    public DRace createRace(Object orgKey, DSeries series, String name) {
+        if (null == orgKey) {
+            throw new BadRequestException();
+        }
+        
+        if (null == series) {
+            series = createSeries(orgKey, name);
+        }
+        DRace race = raceDao.persist(null, name, series);
+        return race;
+    }
+    
+    public DSeries createSeries(Object orgKey, String name) {
+        if (null == orgKey) {
+            throw new BadRequestException();
+        }
+        
+        DSeries series = seriesDao.persist(orgKey, null, name);
+        return series;
     }
     
     public DParticipant enterRace(Long athleteId, Long raceId, Long classId, 
