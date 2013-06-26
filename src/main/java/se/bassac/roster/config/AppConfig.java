@@ -9,8 +9,6 @@ import se.bassac.roster.web.AthleteLeaf;
 import com.wadpam.gaelic.GaelicConfig;
 import com.wadpam.gaelic.GaelicServlet;
 import com.wadpam.gaelic.Node;
-import com.wadpam.gaelic.dao.DAppDomainDao;
-import com.wadpam.gaelic.domain.DAppDomain;
 import com.wadpam.gaelic.oauth.dao.DConnectionDao;
 import com.wadpam.gaelic.oauth.service.ConnectionServiceImpl;
 import com.wadpam.gaelic.oauth.service.OAuth2ServiceImpl;
@@ -30,23 +28,14 @@ import javax.servlet.ServletConfig;
 import net.sf.mardao.core.dao.DaoImpl;
 import se.bassac.roster.dao.DAthleteDao;
 import se.bassac.roster.dao.DCheckpointDao;
-import se.bassac.roster.dao.DCheckpointDaoBean;
 import se.bassac.roster.dao.DClassDao;
-import se.bassac.roster.dao.DClassDaoBean;
 import se.bassac.roster.dao.DMilestoneDao;
-import se.bassac.roster.dao.DMilestoneDaoBean;
 import se.bassac.roster.dao.DOrganizerDao;
-import se.bassac.roster.dao.DOrganizerDaoBean;
 import se.bassac.roster.dao.DParticipantDao;
-import se.bassac.roster.dao.DParticipantDaoBean;
 import se.bassac.roster.dao.DPassageDao;
-import se.bassac.roster.dao.DPassageDaoBean;
 import se.bassac.roster.dao.DRaceDao;
-import se.bassac.roster.dao.DRaceDaoBean;
 import se.bassac.roster.dao.DSeriesDao;
-import se.bassac.roster.dao.DSeriesDaoBean;
 import se.bassac.roster.dao.DTimingsDao;
-import se.bassac.roster.dao.DTimingsDaoBean;
 import se.bassac.roster.dao.DTrackDao;
 import se.bassac.roster.domain.DAthlete;
 import se.bassac.roster.domain.DCheckpoint;
@@ -62,6 +51,7 @@ import se.bassac.roster.domain.DTrack;
 import se.bassac.roster.service.RosterService;
 import se.bassac.roster.service.TrackService;
 import se.bassac.roster.web.EnterLeaf;
+import se.bassac.roster.web.ParticipantLeaf;
 import se.bassac.roster.web.TrackLeaf;
 
 /**
@@ -128,6 +118,8 @@ public class AppConfig implements GaelicConfig, SecurityConfig {
         final TrackService trackService = new TrackService();
         trackService.setDao((DTrackDao) DAO_MAP.get(DTrack.class));
         TrackLeaf trackLeaf = new TrackLeaf();
+        
+        ParticipantLeaf.CONVERTER.setAthleteDao((DAthleteDao) DAO_MAP.get(DAthlete.class));
         
         final RosterService rosterService = new RosterService(
                 appDomainService.getDao(),
