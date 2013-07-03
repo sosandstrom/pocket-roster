@@ -5,7 +5,7 @@
 package se.bassac.roster.config;
 
 import se.bassac.roster.service.AthleteService;
-import se.bassac.roster.web.AthleteLeaf;
+import se.bassac.roster.tree.AthleteLeaf;
 import com.wadpam.gaelic.GaelicConfig;
 import com.wadpam.gaelic.GaelicServlet;
 import com.wadpam.gaelic.Node;
@@ -48,11 +48,13 @@ import se.bassac.roster.domain.DRace;
 import se.bassac.roster.domain.DSeries;
 import se.bassac.roster.domain.DTimings;
 import se.bassac.roster.domain.DTrack;
+import se.bassac.roster.service.RaceService;
 import se.bassac.roster.service.RosterService;
 import se.bassac.roster.service.TrackService;
-import se.bassac.roster.web.EnterLeaf;
-import se.bassac.roster.web.ParticipantLeaf;
-import se.bassac.roster.web.TrackLeaf;
+import se.bassac.roster.tree.EnterLeaf;
+import se.bassac.roster.tree.ParticipantLeaf;
+import se.bassac.roster.tree.RaceLeaf;
+import se.bassac.roster.tree.TrackLeaf;
 
 /**
  *
@@ -115,6 +117,10 @@ public class AppConfig implements GaelicConfig, SecurityConfig {
         
         // Application Resources
         
+        final RaceService raceService = new RaceService();
+        raceService.setDao((DRaceDao) DAO_MAP.get(DRace.class));
+        final RaceLeaf raceLeaf = new RaceLeaf();
+        
         final TrackService trackService = new TrackService();
         trackService.setDao((DTrackDao) DAO_MAP.get(DTrack.class));
         TrackLeaf trackLeaf = new TrackLeaf();
@@ -150,7 +156,10 @@ public class AppConfig implements GaelicConfig, SecurityConfig {
                             .path(EnterLeaf.PATH_RACE_ID)
                                 .path("class")
                                     .path(EnterLeaf.PATH_CLASS_ID)
-                                        .add(EnterLeaf.PATH, enterLeaf);
+                                        .add(EnterLeaf.PATH, enterLeaf)
+                    .from(Node.PATH_DOMAIN)
+                        .path("races")
+                            .crud("v10", raceLeaf, raceService);
                 
         return BUILDER.build();
     }
@@ -159,6 +168,7 @@ public class AppConfig implements GaelicConfig, SecurityConfig {
         Collection<Map.Entry<String, Collection<String>>> oauth2Whitelist = 
                 WHITELIST_BUILDER.with("\\A/api/[^/]+/federated/v1.\\z", GET, POST)
                     .add("\\A/api/[^/]+/race/[^/]+/class/[^/]+/enter", GET)
+                    .add("\\A/api/[^/]+/races/v1", GET)
                     .build();
         
         oauth2Interceptor.setWhitelistedMethods(oauth2Whitelist);

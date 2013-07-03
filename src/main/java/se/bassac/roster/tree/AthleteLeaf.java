@@ -2,7 +2,7 @@
  * INSERT COPYRIGHT HERE
  */
 
-package se.bassac.roster.web;
+package se.bassac.roster.tree;
 
 import se.bassac.roster.domain.DAthlete;
 import se.bassac.roster.json.JAthlete;

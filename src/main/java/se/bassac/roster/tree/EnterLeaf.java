@@ -2,7 +2,7 @@
  * INSERT COPYRIGHT HERE
  */
 
-package se.bassac.roster.web;
+package se.bassac.roster.tree;
 
 import com.wadpam.gaelic.Node;
 import static com.wadpam.gaelic.Node.getCursorKey;
